@@ -3,6 +3,7 @@ package com.example.dualgame;
 import java.util.Date;
 import java.util.Date;
 //Ptrueba 31/10
+//segunda prueba 31/10
 public class Usuario {
     private String nombre;
     private int edad;
