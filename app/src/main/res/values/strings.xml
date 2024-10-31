@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DualGame</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="register">Registrarse</string>
+    <string name="click_to_login">Haz click para iniciar sesión</string>
+    <string name="click_to_register">Haz click para registrarte</string>
+    <string name="logout">Cerrar Sesión</string>
+
+</resources>

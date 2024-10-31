@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "9806659272",
+    "project_id": "dualgame-fa62d",
+    "storage_bucket": "dualgame-fa62d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9806659272:android:db45cc0f33dcd04192effd",
+        "android_client_info": {
+          "package_name": "com.example.dualgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9806659272-vlfsglrkfo332nkt8j2puifg0po37d3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dualgame",
+            "certificate_hash": "0cb485298ad174fe62fa54f0e01fff0d58d2a7a1"
+          }
+        },
+        {
+          "client_id": "9806659272-pq0v435l3lnt3ofjqvf80t90koh9tit4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOI3yVNhKJsPEf__yS_i8sT4QNPOa2JdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9806659272-pq0v435l3lnt3ofjqvf80t90koh9tit4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

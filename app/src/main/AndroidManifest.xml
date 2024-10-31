@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Material3.Light"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".singviews.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ConfiguracionActivity"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".Register"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="false" />
+
+        <activity
+            android:name=".Login"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".singviews.FullScreenImageActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".singviews.LevelsActivity"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".brailleviews.LevelsActivityBraille"
+            android:exported="true" />
+
+        <activity
+            android:name=".singviews.NumbersActivity"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".brailleviews.NumbersActivityBraille"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".singviews.VocalsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.VocalsActivityBraille"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".singviews.AbcActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.AbcActivityBraille"
+            android:exported="true" />
+
+
+
+        <activity
+            android:name=".singviews.LanguageActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".singviews.WordsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.WordsActivityBraille"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".singviews.GamesActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.GamesActivityBraille"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.ResultActivityBraille"
+            android:exported="true" />
+
+
+
+
+        <activity
+            android:name=".brailleviews.SubVocalsActivityBraille"
+            android:exported="true" />
+
+        <activity
+            android:name=".brailleviews.SubNumbersActivityBraille"
+            android:exported="true" />
+
+
+        <activity android:name=".games.QuizQuestionsActivity"
+            android:exported="true"/>
+
+        <activity android:name=".brailleviews.QuizQuestionsActivityBraille"
+            android:exported="true"/>
+
+
+
+        <activity android:name=".brailleviews.VocalGuessingGameActivityBraille"
+            android:exported="true"/>
+
+
+        <activity android:name=".singviews.SubVocalsActivity"
+            android:exported="true"/>
+
+        <activity android:name=".games.ResultActivity"
+            android:exported="true"/>
+        <activity android:name=".games.VocalGuessingGameActivity"/>
+        <activity android:name=".games.QuizQuestionsAbcBraille"/>
+
+        <activity android:name=".brailleviews.AbecedarioActivityBraille"/>
+        <activity android:name=".brailleviews.ResultAbcBraille"/>
+        <activity android:name=".brailleviews.AbcGuessingBraille"/>
+
+    </application>
+
+</manifest>

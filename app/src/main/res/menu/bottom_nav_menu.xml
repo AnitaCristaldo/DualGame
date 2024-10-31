@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home"
+        android:iconTint="@color/purple"
+        android:title="Home" />
+    <item
+        android:id="@+id/navigation_back"
+        android:icon="@drawable/ic_back"
+        android:iconTint="@color/purple"
+        android:title="Atras" />
+    <item
+        android:id="@+id/navigation_games"
+        android:icon="@drawable/ic_games"
+        android:iconTint="@color/purple"
+        android:title="Juegos" />
+    <item
+        android:id="@+id/navigation_config"
+        android:icon="@drawable/ic_config"
+        android:iconTint="@color/purple"
+        android:title="Configuracion" />
+</menu>
