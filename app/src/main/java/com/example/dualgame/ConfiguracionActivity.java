@@ -1,22 +1,15 @@
 package com.example.dualgame;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-
-import java.util.Date;
-
 public class ConfiguracionActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
@@ -61,7 +54,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     // Método para cargar los datos del usuario desde Firestore
-    private void cargarDatosUsuario(String userId) {
+   /* private void cargarDatosUsuario(String userId) {
         DocumentReference docRef = db.collection("usuarios").document(userId);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -82,7 +75,31 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 Toast.makeText(ConfiguracionActivity.this, "Error al cargar los datos.", Toast.LENGTH_SHORT).show();
             }
         });
+    }*/
+    private void cargarDatosUsuario(String userId) {
+        DocumentReference docRef = db.collection("usuarios").document(userId);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult() != null && task.getResult().exists()) {
+                    String nombre = task.getResult().getString("name");
+                    String email = task.getResult().getString("email");
+
+
+                    if (nombre != null) {
+                        etNombre.setText(nombre);
+                    }
+                    if (email != null) {
+                        etEmail.setText(email);
+                    }
+                } else {
+                    Toast.makeText(ConfiguracionActivity.this, "No se encontraron datos del usuario.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ConfiguracionActivity.this, "Error al cargar los datos.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     // Método para mostrar el progreso del usuario
     private void mostrarProgreso(Progreso progreso) {

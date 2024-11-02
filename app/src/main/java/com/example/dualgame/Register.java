@@ -1,5 +1,4 @@
 package com.example.dualgame;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,22 +8,19 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.HashMap;
 import java.util.Map;
-
 public class Register extends AppCompatActivity {
 
     TextInputEditText editTextEmail;
     TextInputEditText editTextPassword;
+    TextInputEditText editTextName; // Campo de texto para el nombre
     Button buttonReg;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -50,6 +46,7 @@ public class Register extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance(); // Inicializa Firestore
+        editTextName = findViewById(R.id.name); // Inicializa el campo de nombre
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         buttonReg = findViewById(R.id.btn_register);
@@ -65,10 +62,15 @@ public class Register extends AppCompatActivity {
 
         buttonReg.setOnClickListener(view -> {
             progressBar.setVisibility(View.VISIBLE);
-            String email, password;
-            email = String.valueOf(editTextEmail.getText());
-            password = String.valueOf(editTextPassword.getText());
+            String name = String.valueOf(editTextName.getText()); // Capturar el nombre
+            String email = String.valueOf(editTextEmail.getText());
+            String password = String.valueOf(editTextPassword.getText());
 
+            if (TextUtils.isEmpty(name)) {
+                Toast.makeText(Register.this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                return;
+            }
             if (TextUtils.isEmpty(email)) {
                 Toast.makeText(Register.this, "Ingresa el email", Toast.LENGTH_SHORT).show();
                 return;
@@ -85,7 +87,7 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Guardar el email en Firestore
                             FirebaseUser user = mAuth.getCurrentUser();
-                            saveUserEmailToFirestore(user.getUid(), email);
+                            saveUserEmailToFirestore(user.getUid(), email, name);// Pasar el nombre para guardarlo
 
                             Toast.makeText(Register.this, "Cuenta creada.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -114,11 +116,13 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    // Método para guardar el email en Firestore
-    private void saveUserEmailToFirestore(String userId, String email) {
+    // Método para guardar el nombre y el email en Firestore
+    private void saveUserEmailToFirestore(String userId, String email, String name) {
         // Crear un mapa para almacenar los datos del usuario
         Map<String, Object> user = new HashMap<>();
         user.put("email", email);
+        user.put("name", name); // Agrega el nombre al mapa
+
 
         // Guardar el mapa en la colección "usuarios"
         db.collection("usuarios").document(userId)
