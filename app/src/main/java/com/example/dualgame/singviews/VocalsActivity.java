@@ -98,38 +98,38 @@ public class VocalsActivity extends AppCompatActivity {
         });
 
         // Configurar el clic en las imágenes dentro de los CardViews
-        findViewById(R.id.card_view_vocal_a).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.card_view_letra_a_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_a);
+                openFullScreenImage(R.drawable.letra_e_senas);
             }
         });
 
-        findViewById(R.id.card_view_vocal_e).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.card_view_letra_e_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFullScreenImage(R.drawable.vocal_e);
             }
         });
 
-        findViewById(R.id.card_view_vocal_i).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.card_view_letra_i_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_i);
+                openFullScreenImage(R.drawable.letra_i_senas);
             }
         });
 
-        findViewById(R.id.card_view_vocal_o).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.card_view_letra_o_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_o);
+                openFullScreenImage(R.drawable.letra_o_senas);
             }
         });
 
-        findViewById(R.id.card_view_vocal_u).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.card_view_letra_u_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_u);
+                openFullScreenImage(R.drawable.letra_u_senas);
             }
         });
 

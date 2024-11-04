@@ -54,8 +54,13 @@ dependencies {
     implementation("com.google.firebase:firebase-auth") // Sin versión explícita, antes estaba especificamente una version
     implementation("com.google.firebase:firebase-firestore")// dependencia de cloudfirestore
 
+//Antes
+    //implementation("com.github.bumptech.glide:glide:4.12.0")
+  //  kapt("com.github.bumptech.glide:compiler:4.12.0")
 
-    implementation("com.github.bumptech.glide:glide:4.12.0")
-    kapt("com.github.bumptech.glide:compiler:4.12.0")
+//Le agregue porque necesito que esté más actualizda para cargar el gif 
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    kapt("com.github.bumptech.glide:compiler:4.14.2")
+
 
 }

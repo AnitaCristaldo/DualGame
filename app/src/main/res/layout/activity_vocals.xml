@@ -42,7 +42,7 @@
             android:rowCount="3">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_vocal_a"
+                android:id="@+id/card_view_letra_a_senas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -62,7 +62,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/vocal_a" />
+                        android:src="@drawable/letra_a_senas" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_vocal_e"
+                android:id="@+id/card_view_letra_e_senas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -98,7 +98,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/vocal_e" />
+                        android:src="@drawable/letra_e_senas" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_vocal_i"
+                android:id="@+id/card_view_letra_i_senas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -134,7 +134,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/vocal_i" />
+                        android:src="@drawable/letra_i_senas" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_vocal_o"
+                android:id="@+id/card_view_letra_o_senas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -170,7 +170,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/vocal_o" />
+                        android:src="@drawable/letra_o_senas" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -186,7 +186,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_vocal_u"
+                android:id="@+id/card_view_letra_u_senas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
@@ -206,7 +206,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/vocal_u" />
+                        android:src="@drawable/letra_u_senas" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -14,7 +14,7 @@ import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class AbcActivityBraille extends AppCompatActivity {
+public class  AbcActivityBraille extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class AbcActivityBraille extends AppCompatActivity {
                         startActivity(new Intent(AbcActivityBraille.this, GamesActivityBraille.class));
                         return true;
                     }
-                    return false;
+                      return false;
                 }
             });
         }
