@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre"
-        android:textColor="#FEFEFE"
         android:layout_marginTop="20dp" />
 
     <!-- Campo de edad -->
@@ -41,7 +40,7 @@
         android:id="@+id/tvFechaRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fecha de Registro"
+        android:text="Fecha de Registro:"
         android:layout_marginTop="16dp"/>
 
     <!-- TextView para mostrar el progreso en los módulos -->

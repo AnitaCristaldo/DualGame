@@ -40,8 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text=""
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textColor="@android:color/white"
             android:gravity="center" />
 
@@ -87,6 +86,7 @@
             android:layout_marginTop="20dp"
             android:text="Correo: "
             android:textSize="18sp"
+            android:gravity="center"
             android:textColor="@android:color/white" />
 
         <!-- TextView para mostrar el contador de inicios de sesión -->
@@ -96,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="16sp"
+            android:gravity="center"
             android:textColor="@android:color/white" />
 
         <!-- Botón para cerrar sesión -->

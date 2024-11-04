@@ -1,4 +1,5 @@
 package com.example.dualgame;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,30 +12,29 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
+
 public class Register extends AppCompatActivity {
 
-    TextInputEditText editTextEmail;
-    TextInputEditText editTextPassword;
-    TextInputEditText editTextName; // Campo de texto para el nombre
+    TextInputEditText editTextEmail, editTextPassword, editTextName, editTextEdad;
     Button buttonReg;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
     ImageView togglePasswordVisibility;
-    FirebaseFirestore db; // Inicializa Firestore
+    FirebaseFirestore db;
 
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class); // Register
-            startActivity(intent);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
     }
@@ -45,8 +45,10 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance(); // Inicializa Firestore
-        editTextName = findViewById(R.id.name); // Inicializa el campo de nombre
+        db = FirebaseFirestore.getInstance();
+
+        editTextName = findViewById(R.id.name);
+        editTextEdad = findViewById(R.id.edad);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         buttonReg = findViewById(R.id.btn_register);
@@ -55,85 +57,77 @@ public class Register extends AppCompatActivity {
         togglePasswordVisibility = findViewById(R.id.togglePasswordVisibility);
 
         textView.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
+            startActivity(new Intent(getApplicationContext(), Login.class));
             finish();
         });
 
         buttonReg.setOnClickListener(view -> {
             progressBar.setVisibility(View.VISIBLE);
-            String name = String.valueOf(editTextName.getText()); // Capturar el nombre
-            String email = String.valueOf(editTextEmail.getText());
-            String password = String.valueOf(editTextPassword.getText());
+            String nombre = editTextName.getText().toString();
+            String email = editTextEmail.getText().toString();
+            String password = editTextPassword.getText().toString();
+            String edadStr = editTextEdad.getText().toString();
 
-            if (TextUtils.isEmpty(name)) {
-                Toast.makeText(Register.this, "Ingresa tu nombre", Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
+            if (TextUtils.isEmpty(nombre)) {
+                showToast("Ingresa tu nombre");
+                return;
+            }
+            if (TextUtils.isEmpty(edadStr)) {
+                showToast("Ingresa tu edad");
                 return;
             }
             if (TextUtils.isEmpty(email)) {
-                Toast.makeText(Register.this, "Ingresa el email", Toast.LENGTH_SHORT).show();
+                showToast("Ingresa el email");
+                return;
+            }
+            if (TextUtils.isEmpty(password)) {
+                showToast("Ingresa la contraseña");
                 return;
             }
 
-            if (TextUtils.isEmpty(password)) {
-                Toast.makeText(Register.this, "Ingresa la contraseña", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            int edad = Integer.parseInt(edadStr);
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            // Guardar el email en Firestore
                             FirebaseUser user = mAuth.getCurrentUser();
-                            saveUserEmailToFirestore(user.getUid(), email, name);// Pasar el nombre para guardarlo
+                            saveUserDataToFirestore(user.getUid(), new Usuario(nombre, edad, email, Timestamp.now()));
 
-                            Toast.makeText(Register.this, "Cuenta creada.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), Login.class);
-                            startActivity(intent);
+                            showToast("Cuenta creada.");
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                             finish();
                         } else {
-                            Toast.makeText(Register.this, "Correo o Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                            showToast("Correo o Contraseña Incorrecta");
                         }
                     });
         });
 
-        togglePasswordVisibility.setOnClickListener(v -> {
-            if (editTextPassword.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-                // Cambiar a texto visible
-                editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                togglePasswordVisibility.setImageResource(R.drawable.eye_on); // Cambiar a eye_on.png
-                togglePasswordVisibility.clearColorFilter(); // Remover el color gris cuando es visible
-            } else {
-                // Cambiar a texto oculto
-                editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                togglePasswordVisibility.setImageResource(R.drawable.eye_off); // Cambiar a eye_off.png
-                togglePasswordVisibility.setColorFilter(ContextCompat.getColor(this, R.color.gray)); // Aplicar color gris
-            }
-            // Mueve el cursor al final del texto
-            editTextPassword.setSelection(editTextPassword.getText().length());
-        });
+        togglePasswordVisibility.setOnClickListener(v -> togglePasswordVisibility());
     }
 
-    // Método para guardar el nombre y el email en Firestore
-    private void saveUserEmailToFirestore(String userId, String email, String name) {
-        // Crear un mapa para almacenar los datos del usuario
-        Map<String, Object> user = new HashMap<>();
-        user.put("email", email);
-        user.put("name", name); // Agrega el nombre al mapa
+    private void togglePasswordVisibility() {
+        if (editTextPassword.getInputType() == (android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
+            editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            togglePasswordVisibility.setImageResource(R.drawable.eye_on);
+            togglePasswordVisibility.clearColorFilter();
+        } else {
+            editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            togglePasswordVisibility.setImageResource(R.drawable.eye_off);
+            togglePasswordVisibility.setColorFilter(ContextCompat.getColor(this, R.color.gray));
+        }
+        editTextPassword.setSelection(editTextPassword.getText().length());
+    }
 
-
-        // Guardar el mapa en la colección "usuarios"
+    private void saveUserDataToFirestore(String userId, Usuario usuario) {
         db.collection("usuarios").document(userId)
-                .set(user)
-                .addOnSuccessListener(aVoid -> {
-                    // Éxito al guardar
-                    Toast.makeText(Register.this, "Email guardado en Firestore.", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Error al guardar
-                    Toast.makeText(Register.this, "Error al guardar el email en Firestore: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                .set(usuario)
+                .addOnSuccessListener(aVoid -> showToast("Datos guardados en Firestore."))
+                .addOnFailureListener(e -> showToast("Error al guardar en Firestore: " + e.getMessage()));
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
     }
 }
