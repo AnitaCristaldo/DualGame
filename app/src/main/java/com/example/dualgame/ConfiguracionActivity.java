@@ -1,22 +1,16 @@
+/*
 package com.example.dualgame;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-
-import java.util.Date;
-
 public class ConfiguracionActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
@@ -61,7 +55,8 @@ public class ConfiguracionActivity extends AppCompatActivity {
     }
 
     // Método para cargar los datos del usuario desde Firestore
-    private void cargarDatosUsuario(String userId) {
+   */
+/* private void cargarDatosUsuario(String userId) {
         DocumentReference docRef = db.collection("usuarios").document(userId);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -70,7 +65,6 @@ public class ConfiguracionActivity extends AppCompatActivity {
                     if (usuario != null) {
                         // Mostrar los datos del usuario en los campos de texto
                         etNombre.setText(usuario.getNombre());
-                        etEdad.setText(String.valueOf(usuario.getEdad()));
                         etEmail.setText(usuario.getEmail()); // Cargar el email
 
 
@@ -82,7 +76,33 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 Toast.makeText(ConfiguracionActivity.this, "Error al cargar los datos.", Toast.LENGTH_SHORT).show();
             }
         });
+    }*//*
+
+    private void cargarDatosUsuario(String userId) {
+        DocumentReference docRef = db.collection("usuarios").document(userId);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult() != null && task.getResult().exists()) {
+                    String nombre = task.getResult().getString("name");
+                    String edad = task.getResult().getString("edad");
+                    String email = task.getResult().getString("email");
+
+
+                    if (nombre != null) {
+                        etNombre.setText(nombre);
+                    }
+                    if (email != null) {
+                        etEmail.setText(email);
+                    }
+                } else {
+                    Toast.makeText(ConfiguracionActivity.this, "No se encontraron datos del usuario.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ConfiguracionActivity.this, "Error al cargar los datos.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     // Método para mostrar el progreso del usuario
     private void mostrarProgreso(Progreso progreso) {
@@ -170,5 +190,128 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 Toast.makeText(ConfiguracionActivity.this, "Error al guardar cambios.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+}
+*/
+package com.example.dualgame;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+public class ConfiguracionActivity extends AppCompatActivity {
+
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+
+    // Componentes de la interfaz
+    private EditText etNombre, etEdad, etEmail;
+    private TextView tvFechaRegistro, tvProgresoModulos, tvDetallesProgreso, tvProgresoCompleto;
+    private Timestamp fechaRegistro;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_configuracion);
+
+        // Inicialización de Firebase Auth y Firestore
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        // Asignar las vistas
+        etNombre = findViewById(R.id.etNombre);
+        etEdad = findViewById(R.id.etEdad);
+        etEmail = findViewById(R.id.etEmail);
+        tvFechaRegistro = findViewById(R.id.tvFechaRegistro);
+        tvProgresoModulos = findViewById(R.id.tvProgresoModulos);
+        tvDetallesProgreso = findViewById(R.id.tvDetallesProgreso);
+        tvProgresoCompleto = findViewById(R.id.tvProgresoCompleto);
+
+        // Obtener el usuario actual
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();  // Obtener el UID del usuario autenticado
+            cargarDatosUsuario(userId); // Cargar datos de Firestore
+
+            // Configurar el botón para guardar cambios
+            Button btnGuardar = findViewById(R.id.btnGuardar);
+            btnGuardar.setOnClickListener(v -> guardarCambiosUsuario(userId));  // Llama a guardar cambios
+        } else {
+            Toast.makeText(this, "Usuario no autenticado, por favor inicia sesión.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Método para cargar los datos del usuario desde Firestore
+    private void cargarDatosUsuario(String userId) {
+        DocumentReference docRef = db.collection("usuarios").document(userId);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult() != null && task.getResult().exists()) {
+                    String nombre = task.getResult().getString("nombre");
+                    Long edad = task.getResult().getLong("edad");
+                    String email = task.getResult().getString("email");
+                    Timestamp fechaRegistroTimestamp = task.getResult().getTimestamp("fechaRegistro");
+
+                    if (nombre != null) {
+                        etNombre.setText(nombre);
+                    }
+                    if (edad != null) {
+                        etEdad.setText(String.valueOf(edad));
+                    }
+                    if (email != null) {
+                        etEmail.setText(email);
+                    }
+                    if (fechaRegistroTimestamp != null) {
+                        fechaRegistro = fechaRegistroTimestamp;  // Actualiza la variable de clase
+                        // Formatear la fecha de registro
+                        String fechaRegistro = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                .format(fechaRegistroTimestamp.toDate());
+                        tvFechaRegistro.setText("Fecha de Registro: " + fechaRegistro);
+                    }
+                } else {
+                    Toast.makeText(ConfiguracionActivity.this, "No se encontraron datos del usuario.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(ConfiguracionActivity.this, "Error al cargar los datos.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Método para guardar los cambios de nombre, edad y email en Firestore
+    private void guardarCambiosUsuario(String userId) {
+        String nombre = etNombre.getText().toString();
+        int edad = Integer.parseInt(etEdad.getText().toString());
+        String email = etEmail.getText().toString();
+
+        DocumentReference docRef = db.collection("usuarios").document(userId);
+
+        // Crea un mapa solo con los campos que deseas actualizar
+        Map<String, Object> fieldsToUpdate = new HashMap<>();
+        fieldsToUpdate.put("nombre", nombre);
+        fieldsToUpdate.put("edad", edad);
+        fieldsToUpdate.put("email", email);
+
+
+        docRef.set(fieldsToUpdate, SetOptions.mergeFields("nombre", "edad", "email"))
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(ConfiguracionActivity.this, "Cambios guardados correctamente.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ConfiguracionActivity.this, "Error al guardar los cambios.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
