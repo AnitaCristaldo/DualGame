@@ -13,7 +13,7 @@ public class Constants{
                 ArrayList<Question> questionList = new ArrayList<>();
 
                 Question que1 = new Question(1, "¿A que vocal pertenece esta imagen?",
-                        R.drawable.vocal_e,
+                        R.drawable.letra_e_senas,
                         "e",
                         "a",
                         "u",
@@ -22,7 +22,7 @@ public class Constants{
                 questionList.add(que1);
 
                 Question que2 = new Question(1, "¿A que vocal pertenece esta imagen?",
-                        R.drawable.vocal_a,
+                        R.drawable.letra_a_senas,
                         "e",
                         "a",
                         "o",
@@ -31,7 +31,7 @@ public class Constants{
                 questionList.add(que2);
 
                 Question que3 = new Question(1, "¿A que vocal pertenece esta imagen?",
-                        R.drawable.vocal_i,
+                        R.drawable.letra_i_senas,
                         "u",
                         "e",
                         "a",
@@ -40,7 +40,7 @@ public class Constants{
                 questionList.add(que3);
 
                 Question que4 = new Question(1, "¿A que vocal pertenece esta imagen?",
-                        R.drawable.vocal_u,
+                        R.drawable.letra_u_senas,
                         "o",
                         "u",
                         "i",
@@ -49,7 +49,7 @@ public class Constants{
                 questionList.add(que4);
 
                 Question que5 = new Question(1, "¿A que vocal pertenece esta imagen?",
-                        R.drawable.vocal_o,
+                        R.drawable.letra_o_senas,
                         "e",
                         "a",
                         "o",

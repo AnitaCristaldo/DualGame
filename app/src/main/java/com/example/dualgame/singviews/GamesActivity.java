@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
+import com.example.dualgame.brailleviews.GamesActivityBraille;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GamesActivity extends AppCompatActivity {
@@ -31,6 +33,10 @@ public class GamesActivity extends AppCompatActivity {
                         finish(); // Vuelve a la actividad anterior
                         return true;
                     }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(GamesActivity.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
+                        return true;
+                    }
                     return false;
                 }
             });
@@ -46,5 +52,19 @@ public class GamesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+       /* // Configurar el CardView para Abecedario
+        CardView cardGameAbecedario = findViewById(R.id.card_game_abecedario);
+        cardGameAbecedario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inicia la actividad SubAbcsActivity
+                Intent intent = new Intent(GamesActivity.this, SubVocalsActivity.class);
+                startActivity(intent);
+            }
+        });
+        */
+
+
     }
 }

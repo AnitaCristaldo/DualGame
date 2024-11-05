@@ -23,7 +23,7 @@ public class LevelsActivityBraille extends AppCompatActivity {
         CardView cardViewVocalesBraille = findViewById(R.id.card_view_vocales_braille);
         CardView cardViewAbecedarioBraille = findViewById(R.id.card_view_abecedario_braille);
         CardView cardViewNumerosBraille = findViewById(R.id.card_view_numeros_braille);
-        CardView cardViewPalabras = findViewById(R.id.card_view_palabras_braille);
+      //  CardView cardViewPalabras = findViewById(R.id.card_view_palabras_braille);
         CardView cardViewGamesBraille = findViewById(R.id.card_view_juegos_braille);
         CardView cardViewHomeBraille = findViewById(R.id.card_view_home_braille);
 
@@ -43,10 +43,10 @@ public class LevelsActivityBraille extends AppCompatActivity {
             startActivity(intent);
         });
 
-        cardViewPalabras.setOnClickListener(v -> {
+      /*  cardViewPalabras.setOnClickListener(v -> {
             Intent intent = new Intent(LevelsActivityBraille.this, WordsActivityBraille.class);  //CAMBIAR
             startActivity(intent);
-        });
+        });*/
 
         cardViewGamesBraille.setOnClickListener(v -> {
             Intent intent = new Intent(LevelsActivityBraille.this, GamesActivityBraille.class);   //CAMBIAR

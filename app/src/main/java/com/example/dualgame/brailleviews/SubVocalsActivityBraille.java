@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -49,8 +51,13 @@ public class SubVocalsActivityBraille extends AppCompatActivity {
                     if (itemId == R.id.navigation_home) {
                         startActivity(new Intent(SubVocalsActivityBraille.this, LanguageActivity.class));
                         return true;
-                    } else if (itemId == R.id.navigation_back) {
+                    }
+                    else if (itemId == R.id.navigation_back) {
                         finish(); // Vuelve a la actividad anterior
+                        return true;
+                    }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(SubVocalsActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
                     }
                     return false;

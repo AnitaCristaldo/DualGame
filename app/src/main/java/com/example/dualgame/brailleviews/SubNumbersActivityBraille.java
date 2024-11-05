@@ -6,7 +6,10 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
+import com.example.dualgame.games.QuizQuestionsNumbersBraille;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,7 +26,7 @@ public class SubNumbersActivityBraille extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Iniciar QuizQuestionsActivity cuando se presione el CardView
-                Intent intent = new Intent(SubNumbersActivityBraille.this, QuizQuestionsActivityBraille.class);
+                Intent intent = new Intent(SubNumbersActivityBraille.this, QuizQuestionsNumbersBraille.class);
                 startActivity(intent);
             }
         });
@@ -33,7 +36,7 @@ public class SubNumbersActivityBraille extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Iniciar WordGuessingGameActivity cuando se presione el CardView
-                Intent intent = new Intent(SubNumbersActivityBraille.this, VocalGuessingGameActivityBraille.class);
+                Intent intent = new Intent(SubNumbersActivityBraille.this, VocalGuessingGameActivityBraille.class);  //necesito cambiar cuandotengala actividad de numeros de braille
                 startActivity(intent);
             }
         });
@@ -53,6 +56,11 @@ public class SubNumbersActivityBraille extends AppCompatActivity {
                         finish(); // Vuelve a la actividad anterior
                         return true;
                     }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(SubNumbersActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
+                        return true;
+                    }
+
                     return false;
                 }
             });

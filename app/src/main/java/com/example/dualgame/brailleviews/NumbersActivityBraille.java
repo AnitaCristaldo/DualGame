@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.FullScreenImageActivity;
 import com.example.dualgame.singviews.LanguageActivity;
@@ -130,6 +131,10 @@ public class NumbersActivityBraille extends AppCompatActivity {
                         return true;
                     } else if (itemId == R.id.navigation_games) {
                         startActivity(new Intent(NumbersActivityBraille.this, GamesActivityBraille.class));
+                        return true;
+                    }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(NumbersActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
                     }
                     return false;

@@ -6,6 +6,9 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.brailleviews.GamesActivityBraille;
 import com.example.dualgame.games.QuizQuestionsActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.games.VocalGuessingGameActivity;
@@ -48,6 +51,11 @@ public class SubVocalsActivity extends AppCompatActivity {
                         return true;
                     } else if (itemId == R.id.navigation_back) {
                         finish(); // Vuelve a la actividad anterior
+                        return true;
+                    }
+
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(SubVocalsActivity.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
                     }
                     return false;

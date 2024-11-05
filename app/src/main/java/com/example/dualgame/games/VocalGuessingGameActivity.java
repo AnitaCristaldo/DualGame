@@ -29,11 +29,11 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
     private List<String> incorrectLetters = new ArrayList<>();
     private List<String> correctLetters = new ArrayList<>();
     private List<WordHint> wordList = Arrays.asList(
-            new WordHint("a", R.drawable.vocal_a),
-            new WordHint("e", R.drawable.vocal_e),
-            new WordHint("i", R.drawable.vocal_i),
-            new WordHint("o", R.drawable.vocal_o),
-            new WordHint("u", R.drawable.vocal_u)
+            new WordHint("a", R.drawable.letra_a_senas),
+            new WordHint("e", R.drawable.letra_e_senas),
+            new WordHint("i", R.drawable.letra_i_senas),
+            new WordHint("o", R.drawable.letra_o_senas),
+            new WordHint("u", R.drawable.letra_u_senas)
     );
 
     // Declaración de variables para los elementos de la interfaz de usuario

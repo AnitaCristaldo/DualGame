@@ -25,6 +25,9 @@
                 android:maxLength="1"
                 android:visibility="invisible"/>
 
+
+
+
             <TextView
                 android:id="@+id/title_text_view"
                 android:layout_width="wrap_content"
@@ -35,6 +38,9 @@
                 android:textColor="#ffffff"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"/>
+
+
+
 
             <!-- Ajustar el tamaño de la imagen -->
             <ImageView

@@ -152,6 +152,17 @@
         <activity android:name=".brailleviews.ResultAbcBraille"/>
         <activity android:name=".brailleviews.AbcGuessingBraille"/>
 
+
+
+
+        <activity android:name=".games.QuizQuestionsNumbersBraille"
+            android:exported="true"/>
+
+        <activity
+            android:name=".brailleviews.ResultActivityNumbersBraille"
+            android:exported="true" />
+
+
     </application>
 
 </manifest>

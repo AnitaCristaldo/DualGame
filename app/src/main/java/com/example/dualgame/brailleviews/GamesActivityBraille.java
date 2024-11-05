@@ -9,8 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.LanguageActivity;
+import com.example.dualgame.singviews.LevelsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GamesActivityBraille extends AppCompatActivity {
@@ -32,6 +34,10 @@ public class GamesActivityBraille extends AppCompatActivity {
                         return true;
                     } else if (itemId == R.id.navigation_back) {
                         finish(); // Vuelve a la actividad anterior
+                        return true;
+                    }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(GamesActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
                     }
                     return false;

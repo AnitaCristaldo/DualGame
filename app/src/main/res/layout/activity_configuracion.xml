@@ -43,30 +43,34 @@
         android:text="Fecha de Registro:"
         android:layout_marginTop="16dp"/>
 
-    <!-- TextView para mostrar el progreso en los módulos -->
-    <TextView
-        android:id="@+id/tvProgresoModulos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Progreso de los Módulos"
-        android:layout_marginTop="16dp"/>
 
-    <!-- TextView para mostrar el progreso completo -->
-    <TextView
-        android:id="@+id/tvProgresoCompleto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Progreso Completo:"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
+    <!--
+        TextView para mostrar el progreso en los módulos
+        <TextView
+            android:id="@+id/tvProgresoModulos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progreso de los Módulos"
+            android:layout_marginTop="16dp"/>
 
-    <!-- Espacio para mostrar los detalles del progreso -->
-    <TextView
-        android:id="@+id/tvDetallesProgreso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Detalles de Progreso:"
-        android:layout_marginTop="16dp"/>
+        TextView para mostrar el progreso completo
+        <TextView
+            android:id="@+id/tvProgresoCompleto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progreso Completo:"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        Espacio para mostrar los detalles del progreso
+        <TextView
+            android:id="@+id/tvDetallesProgreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalles de Progreso:"
+            android:layout_marginTop="16dp"/>
+    -->
+
 
     <!-- Botón para guardar cambios, centrado y con más espacio arriba -->
     <Button

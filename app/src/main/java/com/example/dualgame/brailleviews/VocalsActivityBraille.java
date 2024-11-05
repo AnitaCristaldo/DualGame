@@ -76,6 +76,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.FullScreenImageActivity;
 import com.example.dualgame.singviews.LanguageActivity;
@@ -150,6 +151,10 @@ public class VocalsActivityBraille extends AppCompatActivity {
                         return true;
                     } else if (itemId == R.id.navigation_games) {
                         startActivity(new Intent(VocalsActivityBraille.this, GamesActivityBraille.class));
+                        return true;
+                    }
+                    else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
+                        startActivity(new Intent(VocalsActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
                     }
                     return false;

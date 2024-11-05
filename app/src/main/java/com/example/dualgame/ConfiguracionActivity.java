@@ -236,9 +236,9 @@ public class ConfiguracionActivity extends AppCompatActivity {
         etEdad = findViewById(R.id.etEdad);
         etEmail = findViewById(R.id.etEmail);
         tvFechaRegistro = findViewById(R.id.tvFechaRegistro);
-        tvProgresoModulos = findViewById(R.id.tvProgresoModulos);
-        tvDetallesProgreso = findViewById(R.id.tvDetallesProgreso);
-        tvProgresoCompleto = findViewById(R.id.tvProgresoCompleto);
+       // tvProgresoModulos = findViewById(R.id.tvProgresoModulos);
+       // tvDetallesProgreso = findViewById(R.id.tvDetallesProgreso);
+        //tvProgresoCompleto = findViewById(R.id.tvProgresoCompleto);
 
         // Obtener el usuario actual
         FirebaseUser currentUser = auth.getCurrentUser();
