@@ -143,6 +143,10 @@
         <activity android:name=".singviews.SubVocalsActivity"
             android:exported="true"/>
 
+
+        <activity android:name=".singviews.SubNumbersActivity"
+            android:exported="true"/>
+
         <activity android:name=".games.ResultActivity"
             android:exported="true"/>
         <activity android:name=".games.VocalGuessingGameActivity"/>
@@ -158,11 +162,18 @@
         <activity android:name=".games.QuizQuestionsNumbersBraille"
             android:exported="true"/>
 
+        <activity android:name=".games.QuizQuestionsNumbersSenas"
+            android:exported="true"/>
+
+
+
         <activity
             android:name=".brailleviews.ResultActivityNumbersBraille"
             android:exported="true" />
 
-
+        <activity
+            android:name=".singviews.ResultActivityNumbersSenas"
+            android:exported="true" />
     </application>
 
 </manifest>

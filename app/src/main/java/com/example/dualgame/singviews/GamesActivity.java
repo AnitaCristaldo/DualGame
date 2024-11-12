@@ -66,5 +66,19 @@ public class GamesActivity extends AppCompatActivity {
         */
 
 
+
+
+        // Configurar el CardView para Vocales
+        CardView cardGameNumeros = findViewById(R.id.card_game_numeros);
+        cardGameNumeros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inicia la actividad SubNumbersActivity
+                Intent intent = new Intent(GamesActivity.this, SubNumbersActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

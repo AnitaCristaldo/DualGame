@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
 import com.example.dualgame.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,25 +28,122 @@ public class NumbersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_numbers);
         // Establece el diseño de la actividad usando el archivo de diseño activity_numbers.xml.
 
+
         Log.d(TAG, "onCreate: NumbersActivity started");
         // Escribe un mensaje en el log indicando que la actividad ha comenzado.
 
-        // Establecer listeners de clic para todas las tarjetas (CardViews).
-        for (int i = 1; i <= 53; i++) {
-            // Itera sobre los números del 1 al 53 para buscar las CardViews correspondientes en el diseño.
-            int cardViewId = getResources().getIdentifier("card_view_" + i, "id", getPackageName());
-            // Utiliza getIdentifier() para obtener el ID de la vista basada en el nombre de recurso ("card_view_1", "card_view_2", etc.).
 
-            if (cardViewId != 0) { // Verifica si el recurso existe.
-                setCardClickListener(cardViewId, R.drawable.default_icon);
-                // Si existe, asigna un listener de clic a la CardView y asocia una imagen predeterminada (default_icon).
-                Log.d(TAG, "onCreate: Set click listener for card_view_" + i);
-                // Escribe en el log que se ha asignado un listener para esa CardView.
-            } else {
-                Log.e(TAG, "onCreate: Resource ID not found for card_view_" + i);
-                // Si no se encuentra el ID del recurso, escribe un error en el log.
+
+
+
+
+
+
+        // Cargar el GIF en la ImageView para el numero "10"
+        ImageView imageViewDiez = findViewById(R.id.numero_10); // Debe estar dentro de onCreate()
+        Glide.with(this)
+                .asGif() // Carga como GIF
+                .load(R.drawable.numero_diez_senas) // Carga el GIF
+                .into(imageViewDiez); // Muestra el GIF en el ImageView
+
+
+
+
+        // Configurar el clic en las imágenes dentro de los CardViews
+
+
+
+
+        findViewById(R.id.card_view_0).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_cero_senas);
             }
-        }
+        });
+
+
+
+
+
+        findViewById(R.id.card_view_1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_uno_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_dos_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_tres_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_cuatro_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_5).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_cinco_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_6).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_seis_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_7).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_siete_senas);
+            }
+        });
+        findViewById(R.id.card_view_8).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_ocho_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_9).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_nueve_senas);
+            }
+        });
+
+        findViewById(R.id.card_view_10).setOnClickListener(new View.OnClickListener() {                 //VER SI HAY QUE CAMBIAR VARIABLE PARA LAS IMAGENES DE LAS VOCALES
+            @Override
+            public void onClick(View v) {
+                openFullScreenImage(R.drawable.numero_diez_senas);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
 
         // Establecer listener de clic para el botón de retroceso (Back Button).
         findViewById(R.id.card_view_backbutton).setOnClickListener(new View.OnClickListener() {

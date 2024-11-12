@@ -284,7 +284,14 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
 
         // Mensaje de inicio de sesión que incluye loginCount
-        final String loginCountMessage = "Has jugado " + loginCount + " vez/veces.";
+//        final String loginCountMessage = "Has jugado " + loginCount + " vez/veces.";
+        final String loginCountMessage;
+        if (loginCount == 1) {
+            loginCountMessage = "Has jugado " + loginCount + " vez.";
+        } else {
+            loginCountMessage = "Has jugado " + loginCount + " veces.";
+        }
+
         long daysSinceLastLogin = getDaysSinceLastLogin(lastLoginTime);
 
         DocumentReference userRef = db.collection("usuarios").document(user.getUid());
