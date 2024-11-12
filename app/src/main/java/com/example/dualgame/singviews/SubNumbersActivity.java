@@ -15,6 +15,7 @@ import com.example.dualgame.R;
 
 
 import com.example.dualgame.brailleviews.VocalGuessingGameActivityBraille;
+import com.example.dualgame.games.NumberGuessingActivitySenas;
 import com.example.dualgame.games.QuizQuestionsNumbersSenas;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,7 +43,7 @@ public class SubNumbersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Iniciar WordGuessingGameActivity cuando se presione el CardView
-                Intent intent = new Intent(SubNumbersActivity.this, VocalGuessingGameActivityBraille.class);  //necesito cambiar cuandotengala actividad de numeros de braille
+                Intent intent = new Intent(SubNumbersActivity.this, NumberGuessingActivitySenas.class);  //necesito cambiar cuandotengala actividad de numeros de braille
                 startActivity(intent);
             }
         });
