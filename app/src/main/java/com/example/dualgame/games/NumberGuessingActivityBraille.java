@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.dualgame.R;
+import com.example.dualgame.brailleviews.SubNumbersActivityBraille;
 import com.example.dualgame.singviews.SubNumbersActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class NumberGuessingActivitySenas extends AppCompatActivity {
+public class NumberGuessingActivityBraille extends AppCompatActivity {
 
     // Declaración de variables miembro
     private String number;
@@ -31,17 +32,17 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
     private List<String> incorrectNumbers = new ArrayList<>();
     private List<String> correctNumbers = new ArrayList<>();
     private List<WordHint> numberList = Arrays.asList(
-            new WordHint("0", R.drawable.numero_cero_senas),
-            new WordHint("1", R.drawable.numero_uno_senas),
-            new WordHint("2", R.drawable.numero_dos_senas),
-            new WordHint("3", R.drawable.numero_tres_senas),
-            new WordHint("4", R.drawable.numero_cuatro_senas),
-            new WordHint("5", R.drawable.numero_cinco_senas),
-            new WordHint("6", R.drawable.numero_seis_senas),
-            new WordHint("7", R.drawable.numero_siete_senas),
-            new WordHint("8", R.drawable.numero_ocho_senas),
-            new WordHint("9", R.drawable.numero_nueve_senas),
-            new WordHint("10", R.drawable.numero_diez_senas)
+            new WordHint("0", R.drawable.numero_cero_braille),
+            new WordHint("1", R.drawable.numero_uno_braille),
+            new WordHint("2", R.drawable.numero_dos_braille),
+            new WordHint("3", R.drawable.numero_tres_braille),
+            new WordHint("4", R.drawable.numero_cuatro_braille),
+            new WordHint("5", R.drawable.numero_cinco_braille),
+            new WordHint("6", R.drawable.numero_seis_braille),
+            new WordHint("7", R.drawable.numero_siete_braille),
+            new WordHint("8", R.drawable.numero_ocho_braille),
+            new WordHint("9", R.drawable.numero_nueve_braille)
+
     );
 
     // Declaración de variables para los elementos de la interfaz de usuario
@@ -71,7 +72,7 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
                     // Configura el idioma español para el TTS
                     int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
                     if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Toast.makeText(NumberGuessingActivitySenas.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NumberGuessingActivityBraille.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
                     } else {
                         // Ajuste para un tono más infantil
                         textToSpeech.setPitch(1.5f);       // Aumenta el tono para que suene más aguda
@@ -81,7 +82,7 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
                         playExplanation();
                     }
                 } else {
-                    Toast.makeText(NumberGuessingActivitySenas.this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NumberGuessingActivityBraille.this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -110,7 +111,7 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
 
     // Método para reproducir la explicación con TTS
     private void playExplanation() {
-        String explanationText = "Bienvenido al juego Adivina el número en lengua de señas. Tu objetivo es adivinar el número correcto a partir de la imagen proporcionada. Tienes tres intentos para acertar. ¡Buena suerte!";
+        String explanationText = "Bienvenido al juego Adivina el número en sistema Braille. Tu objetivo es adivinar el número correcto a partir de la imagen proporcionada. Tienes tres intentos para acertar. ¡Buena suerte!";
         textToSpeech.speak(explanationText, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
@@ -125,7 +126,7 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
         Button button7 = findViewById(R.id.button_7);
         Button button8 = findViewById(R.id.button_8);
         Button button9 = findViewById(R.id.button_9);
-        Button button10 = findViewById(R.id.button_10);
+
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -146,7 +147,7 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
         button7.setOnClickListener(listener);
         button8.setOnClickListener(listener);
         button9.setOnClickListener(listener);
-        button10.setOnClickListener(listener);
+
     }
 
     private void randomNumber() {
@@ -232,15 +233,15 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        goToSubnumberActivity();
+                        goToSubnumberActivityBraille();
                     }
                 })
                 .setCancelable(false)
                 .show();
     }
 
-    private void goToSubnumberActivity() {
-        Intent intent = new Intent(NumberGuessingActivitySenas.this, SubNumbersActivity.class);
+    private void goToSubnumberActivityBraille() {
+        Intent intent = new Intent(NumberGuessingActivityBraille.this, SubNumbersActivityBraille.class);
         startActivity(intent);
         finish();
     }

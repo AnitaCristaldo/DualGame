@@ -167,7 +167,8 @@
 
         <activity android:name=".games.NumberGuessingActivitySenas"
             android:exported="true"/>
-
+        <activity android:name=".games.NumberGuessingActivityBraille"
+            android:exported="true"/>
 
         <activity
             android:name=".brailleviews.ResultActivityNumbersBraille"
