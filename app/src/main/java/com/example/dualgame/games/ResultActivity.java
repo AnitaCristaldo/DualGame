@@ -10,7 +10,7 @@ import com.example.dualgame.R;
 import com.example.dualgame.singviews.SubVocalsActivity;
 
 public class ResultActivity extends AppCompatActivity {
-
+//ESTE RESULT O PANTALLA LE PERTENECE A CUESTIONARIO DE VOCALES DE LENGUA DE SEÑAS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class ResultActivity extends AppCompatActivity {
         // Determine the message based on the score
         String message;
         if (correctAnswers <= 2) {
-            message = "Debes esforzarte más\n          ¡Tú puedes!";
+            message = "DeBBBBes esforzarte más\n          ¡Tú puedes!";
         } else if (correctAnswers == 3) {
             message = "     \t¡Bien hecho!\n Estás mejorando";
         } else {

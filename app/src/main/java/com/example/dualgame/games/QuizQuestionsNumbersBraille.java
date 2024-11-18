@@ -16,6 +16,7 @@ import com.example.dualgame.R;
 import com.example.dualgame.brailleviews.AbecedarioActivityBraille;
 import com.example.dualgame.brailleviews.ResultAbcBraille;
 import com.example.dualgame.brailleviews.ResultActivityBraille;
+import com.example.dualgame.brailleviews.ResultActivityNumbersBraille;
 import com.example.dualgame.brailleviews.SubNumbersActivityBraille;
 import com.example.dualgame.singviews.SubVocalsActivity;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class QuizQuestionsNumbersBraille extends AppCompatActivity implements Vi
                 if (mCurrentPosition <= mQuestionList.size()) {
                     setQuestion();
                 } else {
-                    Intent intent = new Intent(QuizQuestionsNumbersBraille.this, ResultAbcBraille.class);
+                    Intent intent = new Intent(QuizQuestionsNumbersBraille.this, ResultActivityNumbersBraille.class);
                     intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers);
                     intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList.size());
                     startActivity(intent);

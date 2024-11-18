@@ -1,6 +1,6 @@
 package com.example.dualgame.singviews;
 
-
+//verificar porque al finalizar cuestionario de números te lleva a SubNumbersActivityBraille si está bien la navegación
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.example.dualgame.R;
 import com.example.dualgame.games.Constants;
 
 public class ResultActivityNumbersSenas extends AppCompatActivity {
-
+    //ESTE RESULT O PANTALLA LE PERTENECE A CUESTIONARIO DE NUMEROS DE LENGUA DE SEÑAS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +50,9 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
         if (correctAnswers <= 2) {
             message = "Debes esforzarte más\n          ¡Tú puedes!";
         } else if (correctAnswers == 3) {
-            message = "     \t¡Bien hecho!\n Estás mejorando";
+            message = "     \t¡Bieen hecho!\n Estás mejorando";
         } else {
-            message = "        ¡Felicidades!\n    Excelente trabajo";
+            message = "        ¡Feelicidades!\n    Excelente trabajo";
         }
 
 

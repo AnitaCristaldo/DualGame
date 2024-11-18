@@ -10,7 +10,7 @@
 
     <!-- TextView for result title -->
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/tv_result_numbers_braille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resultado"
@@ -24,28 +24,28 @@
 
     <!-- TextView for congratulations message -->
     <TextView
-        android:id="@+id/tv_congratulations"
+        android:id="@+id/tv_congratulations_numbers_braille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Felicitaciones!!"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/tv_result"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result_numbers_braille"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"/>
 
     <!-- TextView for score -->
     <TextView
-        android:id="@+id/tv_score"
+        android:id="@+id/tv_score_numbers_braille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tu Puntaje es de 9 de 10"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/tv_congratulations"
+        app:layout_constraintTop_toBottomOf="@+id/tv_congratulations_numbers_braille"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"/>
@@ -56,15 +56,15 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/ic_trophy"
-        app:layout_constraintTop_toBottomOf="@+id/tv_score"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_numbers_braille"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintBottom_toTopOf="@+id/btn_finish_braille" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_finish_numbers_braille" />
 
 
     <Button
-        android:id="@+id/btn_finish_braille"
+        android:id="@+id/btn_finish_numbers_braille"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_score"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_numbers_braille"
         app:layout_constraintVertical_bias="0.846" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

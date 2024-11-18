@@ -4,53 +4,66 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.dualgame.R;
-import com.example.dualgame.games.ConstantsBraille;
+import com.example.dualgame.games.ConstantsAbcBraille;
 
 public class ResultAbcBraille extends AppCompatActivity {
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_result);
+            setContentView(R.layout.activity_result_braille);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 
-            // Get references to the views
+            // Obtener referencias a los elementos de la interfaz
             TextView tvScoreBraille = findViewById(R.id.tv_score);
             TextView tvCongratulations = findViewById(R.id.tv_congratulations); // Referencia al TextView de Felicitaciones
-            Button btnFinish = findViewById(R.id.btn_finish);
+            Button btnFinish = findViewById(R.id.btn_finish_braille);
+            ImageView icTrophy = findViewById(R.id.ic_trophy); // Referencia al ImageView
 
-            // Get the data passed from the previous activity
-            int totalQuestions = getIntent().getIntExtra(ConstantsBraille.TOTAL_QUESTIONS, 0);
-            int correctAnswers = getIntent().getIntExtra(ConstantsBraille.CORRECT_ANSWERS, 0);
+            // Obtener los datos pasados desde la actividad anterior
+            int totalQuestions = getIntent().getIntExtra(ConstantsAbcBraille.TOTAL_QUESTIONS, 0);
+            int correctAnswers = getIntent().getIntExtra(ConstantsAbcBraille.CORRECT_ANSWERS, 0);
 
-            // Set the score text
+            // Configurar el texto del puntaje
             tvScoreBraille.setText("Tu puntaje es " + correctAnswers + " de " + totalQuestions);
 
-            // Determine the message based on the score
+            // Determinar el mensaje basado en el puntaje
             String message;
-            if (correctAnswers <= 2) {
+            int trophyImage; // Variable para determinar qué imagen mostrar
+
+            if (correctAnswers <= 2) { // 0 a 2 respuestas correctas
                 message = "Debes esforzarte más, ¡tú puedes!";
-            } else if (correctAnswers == 3) {
+                trophyImage = R.drawable.medalla_bronce; // Cambia según tu archivo
+            } else if (correctAnswers <= 4) { // 3 o 4 respuestas correctas
                 message = "¡Bien hecho! Estás mejorando.";
-            } else {
-                message = "¡Felicidades! Excelente trabajo.";
+                trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo
+            } else if (correctAnswers <= 6) { // 5 o 6 respuestas correctas
+                message = "¡Muy buen trabajo! Estás cerca de la perfección.";
+                trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo (puede ser plata o algo especial)
+            } else { // 7 u 8 respuestas correctas
+                message = "¡Felicidades! Excelente trabajo, eres un experto.";
+                trophyImage = R.drawable.medalla_oro; // Cambia según tu archivo
             }
 
-            // Set the dynamic message
+// Configurar el mensaje dinámico y la imagen
+            tvCongratulations.setText(message);
+            icTrophy.setImageResource(trophyImage);
+
+
+
+            // Configurar el mensaje dinámico y la imagen
             tvCongratulations.setText(message);
 
-            // Set the click listener for the finish button
-            btnFinish.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Volver a SubVocalsActivity al presionar el botón
-                    Intent intent = new Intent(ResultAbcBraille.this, AbecedarioActivityBraille.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+            btnFinish.setOnClickListener(v -> {
+                // Volver a SubAbcsActivity al presionar el botón
+                Intent intent = new Intent(ResultAbcBraille.this, AbecedarioActivityBraille.class);
+                startActivity(intent);
+                finish();
             });
         }
     }

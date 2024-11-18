@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_degradado"
     android:padding="16dp">
-
+    <!-- ESTA INTERFAZ SE RELACIONA CON EL RESULT ACTIVITY DE CUESTIONARIO DE VOCALES Y VOLVER A VER SI CUESIONARIO DE NUMEROS EN LENGUA DE SEÑAS  -->
     <!-- TextView for result title -->
     <TextView
         android:id="@+id/tv_result"
