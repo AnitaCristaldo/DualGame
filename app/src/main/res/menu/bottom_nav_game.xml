@@ -17,4 +17,10 @@
         android:iconTint="@color/purple"
         android:title="Configuracion" />
 
+    <item
+        android:id="@+id/navigation_logros"
+        android:icon="@drawable/medal_solid"
+        android:iconTint="@color/purple"
+        android:title="Logros" />
+
 </menu>

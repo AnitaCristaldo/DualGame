@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
+import com.example.dualgame.LogrosActivity;
 import com.example.dualgame.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -188,6 +189,13 @@ public class NumbersActivity extends AppCompatActivity {
                         // Si el elemento seleccionado es "navigation_games", inicia GamesActivity.
                         startActivity(new Intent(NumbersActivity.this, GamesActivity.class));
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(NumbersActivity.this, LogrosActivity.class));
+                        return true;
+
+
                     }
                     return false;
                     // Retorna false si ninguna opción coincide.

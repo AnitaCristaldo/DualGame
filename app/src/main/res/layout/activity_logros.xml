@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_degradado"
+    tools:context=".LogrosActivity">
+
+    <!-- Título de la pantalla -->
+    <TextView
+        android:id="@+id/tvLogrosTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis Logros"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Botones de selección de categoría -->
+    <Button
+        android:id="@+id/btnLenguaDeSenias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lengua de Señas"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/tvLogrosTitle"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnSistemaBraille"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sistema Braille"
+        android:layout_below="@id/btnLenguaDeSenias"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigationtwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_levels" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigationtwo" />
+
+</RelativeLayout>
