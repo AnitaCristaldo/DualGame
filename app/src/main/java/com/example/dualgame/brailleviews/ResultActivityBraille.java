@@ -2,6 +2,7 @@ package com.example.dualgame.brailleviews;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log; // Asegúrate de importar Log
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResultActivityBraille extends AppCompatActivity {
+
+    private static final String TAG = "ResultActivityBraille"; // Etiqueta para los logs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,26 +72,35 @@ public class ResultActivityBraille extends AppCompatActivity {
 
         if (currentUser != null) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            // Definimos que la categoría es "vocales"
-            DocumentReference categoriaRef = db.collection("usuarios")
+            // Ahora creamos el módulo "Braille" si no existe y agregamos categorías dentro de él
+            DocumentReference moduloRef = db.collection("usuarios")
                     .document(currentUser.getEmail()) // Aquí usas el correo del usuario como ID
-                    .collection("categorias")
-                    .document("vocales"); // Fijo como "vocales" para este módulo
+                    .collection("modulos")  // Subcolección de módulos
+                    .document("braille");   // Documento para el módulo "Braille"
 
-            // Verificar si las categorías ya existen
+            Log.d(TAG, "Referencia del módulo: " + moduloRef.getPath());  // Log para ver la ruta del módulo
+
+            // Accedemos a la subcolección "categorias" dentro del módulo "Braille"
+            DocumentReference categoriaRef = moduloRef.collection("categorias")
+                    .document("vocales");  // Esta categoría específica (como "vocales")
+
+            Log.d(TAG, "Referencia de la categoría: " + categoriaRef.getPath());  // Log para ver la ruta de la categoría
+
+            // Verificar si la categoría "vocales" ya existe
             categoriaRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     if (!task.getResult().exists()) {
-                        // Si no existen, inicializa las categorías
+                        Log.d(TAG, "La categoría 'vocales' no existe, inicializando...");
+                        // Si la categoría no existe, inicializamos las categorías
                         inicializarCategorias(categoriaRef);
                     } else {
-                        // Si las categorías ya existen, actualizar la medalla
+                        Log.d(TAG, "La categoría 'vocales' ya existe, actualizando medallas...");
+                        // Si la categoría ya existe, actualizamos la medalla
                         actualizarMedallas(categoriaRef, medalla);
                     }
                 } else {
                     // Manejo de error si la verificación falla
-                    // (Por ejemplo, si no se puede acceder a Firestore)
-                    task.getException().printStackTrace();
+                    Log.e(TAG, "Error al verificar la categoría 'vocales'", task.getException());
                 }
             });
         }
@@ -113,11 +125,12 @@ public class ResultActivityBraille extends AppCompatActivity {
         categoriaRef.set(categorias)
                 .addOnSuccessListener(aVoid -> {
                     // Una vez inicializadas las categorías, actualizar la medalla
+                    Log.d(TAG, "Categorías inicializadas correctamente.");
                     actualizarMedallas(categoriaRef, "Bronce");  // Se puede cambiar según el puntaje
                 })
                 .addOnFailureListener(e -> {
                     // Manejo de error si la inicialización falla
-                    e.printStackTrace();
+                    Log.e(TAG, "Error al inicializar las categorías", e);
                 });
     }
 
@@ -126,12 +139,15 @@ public class ResultActivityBraille extends AppCompatActivity {
         switch (medalla) {
             case "Bronce":
                 categoriaRef.update("medallasBronce", FieldValue.increment(1));
+                Log.d(TAG, "Medalla Bronce incrementada.");
                 break;
             case "Plata":
                 categoriaRef.update("medallasPlata", FieldValue.increment(1));
+                Log.d(TAG, "Medalla Plata incrementada.");
                 break;
             case "Oro":
                 categoriaRef.update("medallasOro", FieldValue.increment(1));
+                Log.d(TAG, "Medalla Oro incrementada.");
                 break;
         }
     }

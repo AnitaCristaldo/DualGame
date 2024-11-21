@@ -26,14 +26,14 @@ public class LogrosActivity extends AppCompatActivity {
         btnLenguaDeSenias.setOnClickListener(v -> {
             // Ir a la pantalla de logros de Lengua de Señas
             Intent intent = new Intent(LogrosActivity.this, LogrosDetalleActivity.class);
-            intent.putExtra("categoria", "Lengua de Señas");
+
             startActivity(intent);
         });
 
         btnSistemaBraille.setOnClickListener(v -> {
             // Ir a la pantalla de logros de Sistema Braille
             Intent intent = new Intent(LogrosActivity.this, LogrosDetalleActivity.class);
-            intent.putExtra("categoria", "Sistema Braille");
+
             startActivity(intent);
         });
 
