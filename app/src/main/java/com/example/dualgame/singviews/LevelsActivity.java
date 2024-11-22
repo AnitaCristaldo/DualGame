@@ -56,6 +56,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.brailleviews.LevelsActivityBraille;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -120,6 +121,15 @@ public class LevelsActivity extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(LevelsActivity.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(LevelsActivity.this, LogrosActivity.class));
+                        return true;
+
+
+
                     }
                     return false;
                 }

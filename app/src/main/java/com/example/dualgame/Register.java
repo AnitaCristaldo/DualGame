@@ -98,7 +98,7 @@ public class Register extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Login.class));
                             finish();
                         } else {
-                            showToast("Correo o Contraseña Incorrecta");
+                            showToast("Error al registrarse");
                         }
                     });
         });

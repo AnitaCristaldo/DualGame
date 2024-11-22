@@ -1,7 +1,5 @@
 package com.example.dualgame;
 import com.google.firebase.Timestamp;
-import java.util.Date;
-import java.util.Date;
 public class Usuario {
     private String nombre;
     private int edad;
@@ -43,9 +41,7 @@ public class Usuario {
     }
 
 
-    public Progreso getProgreso() {
-        return null;
-    }
+
     public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }

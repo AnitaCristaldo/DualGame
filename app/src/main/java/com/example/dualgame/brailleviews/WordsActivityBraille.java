@@ -8,8 +8,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dualgame.LogrosActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.LanguageActivity;
+import com.example.dualgame.singviews.LevelsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WordsActivityBraille extends AppCompatActivity {
@@ -46,6 +48,12 @@ public class WordsActivityBraille extends AppCompatActivity {
                     } else if (itemId == R.id.navigation_games) {
                         startActivity(new Intent(WordsActivityBraille.this, GamesActivityBraille.class));
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(WordsActivityBraille.this, LogrosActivity.class));
+                        return true;
+
                     }
                     return false;
                 }

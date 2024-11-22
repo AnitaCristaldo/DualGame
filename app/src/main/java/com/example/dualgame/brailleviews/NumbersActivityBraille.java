@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.FullScreenImageActivity;
 import com.example.dualgame.singviews.LanguageActivity;
+import com.example.dualgame.singviews.LevelsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NumbersActivityBraille extends AppCompatActivity {
@@ -133,6 +135,14 @@ public class NumbersActivityBraille extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(NumbersActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(NumbersActivityBraille.this, LogrosActivity.class));
+                        return true;
+
+
+
                     }
                     return false;
                 }
