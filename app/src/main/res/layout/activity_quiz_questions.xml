@@ -9,19 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center">
+        android:padding="16dp">
 
         <!-- Botón de retroceso -->
         <Button
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar Cuestionario"
-            android:textColor="@color/white"
-            android:background="@color/purple"
-            android:textSize="16sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="2dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_back_background"
+            android:text="Atrás"
             />
 
         <TextView
@@ -33,15 +33,12 @@
             android:textColor="#363A43"
             android:textSize="22sp"
             android:text="¿A qué vocal pertenece esta imagen?"/>
-
-
-
-
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="16dp"
+            android:layout_gravity="center"
             android:src="@drawable/letra_e_senas"/>
 
         <LinearLayout

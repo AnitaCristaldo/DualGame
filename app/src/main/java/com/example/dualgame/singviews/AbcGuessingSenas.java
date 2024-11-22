@@ -1,4 +1,5 @@
-package com.example.dualgame.brailleviews;
+package com.example.dualgame.singviews;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -16,45 +17,45 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-public class AbcGuessingBraille extends AppCompatActivity {
+public class AbcGuessingSenas extends AppCompatActivity {
 
     // Constantes
     private static final int MAX_GUESSES = 3;
 
     // Variables del juego
     private String word;
-    private Button submitButton, resetButton, btnBack; //botón de retroceso
+    private Button submitButton, resetButton, btnBack; // botón de retroceso
     private int remainingGuesses;
     private final List<String> incorrectLetters = new ArrayList<>();
     private final List<String> correctLetters = new ArrayList<>();
     private final List<WordHint> wordList = Arrays.asList(
-            new WordHint("a", R.drawable.letra_a_braille),
-            new WordHint("b", R.drawable.letra_b_braille),
-            new WordHint("c", R.drawable.letra_c_braille),
-            new WordHint("d", R.drawable.letra_d_braille),
-            new WordHint("e", R.drawable.letra_e_braille),
-            new WordHint("f", R.drawable.letra_f_braille),
-            new WordHint("g", R.drawable.letra_g_braille),
-            new WordHint("h", R.drawable.letra_h_braille),
-            new WordHint("i", R.drawable.letra_i_braille),
-            new WordHint("j", R.drawable.letra_j_braille),
-            new WordHint("k", R.drawable.letra_k_braille),
-            new WordHint("l", R.drawable.letra_l_braille),
-            new WordHint("m", R.drawable.letra_m_braille),
-            new WordHint("n", R.drawable.letra_n_braille),
-            new WordHint("ñ", R.drawable.letra_enie_braille),
-            new WordHint("o", R.drawable.letra_o_braille),
-            new WordHint("p", R.drawable.letra_p_braille),
-            new WordHint("q", R.drawable.letra_q_braille),
-            new WordHint("r", R.drawable.letra_r_braille),
-            new WordHint("s", R.drawable.letra_s_braille),
-            new WordHint("t", R.drawable.letra_t_braille),
-            new WordHint("u", R.drawable.letra_u_braille),
-            new WordHint("v", R.drawable.letra_v_braille),
-            new WordHint("w", R.drawable.letra_w_braille),
-            new WordHint("x", R.drawable.letra_x_braille),
-            new WordHint("y", R.drawable.letra_y_braille),
-            new WordHint("z", R.drawable.letra_z_braille)
+            new WordHint("a", R.drawable.letra_a_senas),
+            new WordHint("b", R.drawable.letra_b_senas),
+            new WordHint("c", R.drawable.letra_c_senas),
+            new WordHint("d", R.drawable.letra_d_senas),
+            new WordHint("e", R.drawable.letra_e_senas),
+            new WordHint("f", R.drawable.letra_f_senas),
+            new WordHint("g", R.drawable.letra_g_senas),
+            new WordHint("h", R.drawable.letra_h_senas),
+            new WordHint("i", R.drawable.letra_i_senas),
+            new WordHint("j", R.drawable.letra_j_senas),
+            new WordHint("k", R.drawable.letra_k_senas),
+            new WordHint("l", R.drawable.letra_l_senas),
+            new WordHint("m", R.drawable.letra_m_senas),
+            new WordHint("n", R.drawable.letra_n_senas),
+            new WordHint("ñ", R.drawable.letra_enie_senas),
+            new WordHint("o", R.drawable.letra_o_senas),
+            new WordHint("p", R.drawable.letra_p_senas),
+            new WordHint("q", R.drawable.letra_q_senas),
+            new WordHint("r", R.drawable.letra_r_senas),
+            new WordHint("s", R.drawable.letra_s_senas),
+            new WordHint("t", R.drawable.letra_t_senas),
+            new WordHint("u", R.drawable.letra_u_senas),
+            new WordHint("v", R.drawable.letra_v_senas),
+            new WordHint("w", R.drawable.letra_w_senas),
+            new WordHint("x", R.drawable.letra_x_senas),
+            new WordHint("y", R.drawable.letra_y_senas),
+            new WordHint("z", R.drawable.letra_z_senas)
     );
 
     // Elementos de la interfaz
@@ -89,6 +90,7 @@ public class AbcGuessingBraille extends AppCompatActivity {
 
         // Generar palabra aleatoria
         randomWord();
+
         // Inicializar el botón de retroceso y su listener
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(view -> finish()); // Esto cierra la actividad actual
@@ -193,7 +195,7 @@ public class AbcGuessingBraille extends AppCompatActivity {
     }
 
     private void playExplanation() {
-        String explanationText = "Bienvenido al juego Adivina la letra en sistema Braille. Intenta adivinar la letra correspondiente al símbolo.";
+        String explanationText = "Bienvenido al juego Adivina la letra en lengua de señas. Intenta adivinar la letra correspondiente al símbolo.";
         textToSpeech.speak(explanationText, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 

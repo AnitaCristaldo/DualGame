@@ -1,16 +1,18 @@
-package com.example.dualgame.games;
+package com.example.dualgame.singviews;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.dualgame.R;
-import com.example.dualgame.singviews.SubVocalsActivity;
 
-public class ResultActivity extends AppCompatActivity {
-//ESTE RESULT O PANTALLA LE PERTENECE A CUESTIONARIO DE VOCALES DE LENGUA DE SEÑAS
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dualgame.R;
+import com.example.dualgame.games.Constants;
+
+public class ResultAbcSenas extends AppCompatActivity {
+    //ESTE RESULT O PANTALLA LE PERTENECE A CUESTIONARIO DE VOCALES DE LENGUA DE SEÑAS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +64,12 @@ public class ResultActivity extends AppCompatActivity {
                 // Definir la acción al hacer clic en el botón btnFinish
 
                 // Crear un nuevo Intent para iniciar la actividad SubVocalsActivity
-                Intent intent = new Intent(ResultActivity.this, SubVocalsActivity.class);
+                Intent intent = new Intent(ResultAbcSenas.this, SubAbcActivity.class);
                 startActivity(intent);
-                // Inicia la actividad SubVocalsActivity
+                // Inicia la actividad SubAbcActivity
 
                 finish();
-                // Finaliza la actividad actual (ResultActivity), para que no se pueda volver a ella usando el botón de retroceso.
+                // Finaliza la actividad actual (ResultAbcSenas), para que no se pueda volver a ella usando el botón de retroceso.
             }
         });
     }

@@ -102,9 +102,6 @@ public class NumbersActivityBraille extends AppCompatActivity {
                 openFullScreenImage(R.drawable.signo_numerico_braille);
             }
         });
-
-
-
         // Set click listener for the back button
         findViewById(R.id.card_view_backbutton).setOnClickListener(new View.OnClickListener() {
             @Override

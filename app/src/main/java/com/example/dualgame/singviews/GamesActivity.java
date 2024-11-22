@@ -7,10 +7,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.R;
-import com.example.dualgame.brailleviews.GamesActivityBraille;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GamesActivity extends AppCompatActivity {
@@ -52,22 +50,16 @@ public class GamesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-       /* // Configurar el CardView para Abecedario
+        // Configurar el CardView para Abecedario
         CardView cardGameAbecedario = findViewById(R.id.card_game_abecedario);
         cardGameAbecedario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Inicia la actividad SubAbcsActivity
-                Intent intent = new Intent(GamesActivity.this, SubVocalsActivity.class);
+                Intent intent = new Intent(GamesActivity.this, SubAbcActivity.class);
                 startActivity(intent);
             }
         });
-        */
-
-
-
-
         // Configurar el CardView para Vocales
         CardView cardGameNumeros = findViewById(R.id.card_game_numeros);
         cardGameNumeros.setOnClickListener(new View.OnClickListener() {

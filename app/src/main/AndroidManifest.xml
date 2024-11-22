@@ -25,26 +25,23 @@
 
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"></activity>
 
         <activity
             android:name=".ConfiguracionActivity"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"></activity>
 
         <activity
             android:name=".Register"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
 
         <activity
             android:name=".Login"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"></activity>
 
         <activity
             android:name=".singviews.FullScreenImageActivity"
@@ -53,7 +50,6 @@
         <activity
             android:name=".singviews.LevelsActivity"
             android:exported="true" />
-
 
 
         <activity
@@ -70,7 +66,6 @@
             android:exported="true" />
 
 
-
         <activity
             android:name=".singviews.VocalsActivity"
             android:exported="true" />
@@ -80,7 +75,6 @@
             android:exported="true" />
 
 
-
         <activity
             android:name=".singviews.AbcActivity"
             android:exported="true" />
@@ -88,7 +82,6 @@
         <activity
             android:name=".brailleviews.AbcActivityBraille"
             android:exported="true" />
-
 
 
         <activity
@@ -117,8 +110,6 @@
             android:exported="true" />
 
 
-
-
         <activity
             android:name=".brailleviews.SubVocalsActivityBraille"
             android:exported="true" />
@@ -128,47 +119,54 @@
             android:exported="true" />
 
 
-        <activity android:name=".games.QuizQuestionsActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".games.QuizQuestionsActivity"
+            android:exported="true" />
 
-        <activity android:name=".brailleviews.QuizQuestionsActivityBraille"
-            android:exported="true"/>
-
-
-
-        <activity android:name=".brailleviews.VocalGuessingGameActivityBraille"
-            android:exported="true"/>
+        <activity
+            android:name=".brailleviews.QuizQuestionsActivityBraille"
+            android:exported="true" />
 
 
-        <activity android:name=".singviews.SubVocalsActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".brailleviews.VocalGuessingGameActivityBraille"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".singviews.SubVocalsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".singviews.SubNumbersActivity"
+            android:exported="true" />
+        <activity
+            android:name=".games.ResultActivity"
+            android:exported="true" />
+        <activity android:name=".games.VocalGuessingGameActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".games.QuizQuestionsAbcBraille" />
+        <activity android:name=".brailleviews.AbecedarioActivityBraille" />
+        <activity android:name=".brailleviews.ResultAbcBraille" />
+        <activity android:name=".brailleviews.AbcGuessingBraille"
+            android:windowSoftInputMode="adjustResize" />
+<!-- atributo windowSoftInputMode para evitar que el teclado oculte los botones en el diseño-->
 
+        <activity android:name=".singviews.AbcGuessingSenas"
+            android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".singviews.SubNumbersActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".games.QuizQuestionsNumbersBraille"
+            android:exported="true" />
 
-        <activity android:name=".games.ResultActivity"
-            android:exported="true"/>
-        <activity android:name=".games.VocalGuessingGameActivity"/>
-        <activity android:name=".games.QuizQuestionsAbcBraille"/>
+        <activity
+            android:name=".games.QuizQuestionsNumbersSenas"
+            android:exported="true" />
 
-        <activity android:name=".brailleviews.AbecedarioActivityBraille"/>
-        <activity android:name=".brailleviews.ResultAbcBraille"/>
-        <activity android:name=".brailleviews.AbcGuessingBraille"/>
-
-
-
-
-        <activity android:name=".games.QuizQuestionsNumbersBraille"
-            android:exported="true"/>
-
-        <activity android:name=".games.QuizQuestionsNumbersSenas"
-            android:exported="true"/>
-
-        <activity android:name=".games.NumberGuessingActivitySenas"
-            android:exported="true"/>
-        <activity android:name=".games.NumberGuessingActivityBraille"
-            android:exported="true"/>
+        <activity
+            android:name=".games.NumberGuessingActivitySenas"
+            android:exported="true" />
+        <activity
+            android:name=".games.NumberGuessingActivityBraille"
+            android:exported="true" />
 
         <activity
             android:name=".brailleviews.ResultActivityNumbersBraille"
@@ -178,7 +176,18 @@
             android:name=".singviews.ResultActivityNumbersSenas"
             android:exported="true" />
 
-
+        <activity
+            android:name=".singviews.SubAbcActivity"
+            android:exported="true" />
+        <activity
+            android:name=".singviews.QuizQuestionsAbcSenas"
+            android:exported="true" />
+        <activity
+            android:name=".singviews.ResultAbcSenas"
+            android:exported="true" />
+        <activity
+            android:name=".singviews.ConstantsAbc"
+            android:exported="true" />
 
     </application>
 

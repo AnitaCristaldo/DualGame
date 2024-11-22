@@ -1,5 +1,4 @@
 package com.example.dualgame.games;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -23,7 +22,6 @@ import java.util.Random;
 
 public class VocalGuessingGameActivity extends AppCompatActivity {
 
-    // Declaración de variables miembro
     private String word;
     private int maxGuesses;
     private List<String> incorrectLetters = new ArrayList<>();
@@ -36,40 +34,41 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
             new WordHint("u", R.drawable.letra_u_senas)
     );
 
-    // Declaración de variables para los elementos de la interfaz de usuario
     private ImageView hintImageView;
     private TextView guessLeftTextView;
     private TextView wrongLettersTextView;
     private EditText typingInput;
+    private Button confirmButton;
     private Button resetButton;
 
-    // Variables para los sonidos
     private MediaPlayer correctSound;
     private MediaPlayer wrongSound;
 
-    // Variable para TextToSpeech
     private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guessinggame);
-
-        // Inicializa TextToSpeech con tono y velocidad ajustados
+        // Inicializa el botón de regreso
+        Button backButton = findViewById(R.id.btn_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finaliza la actividad actual y regresa a la anterior
+                finish();
+            }
+        });
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
-                    // Configura el idioma español para el TTS
                     int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
                     if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Toast.makeText(VocalGuessingGameActivity.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
                     } else {
-                        // Ajuste para un tono más infantil
-                        textToSpeech.setPitch(1.5f);       // Aumenta el tono para que suene más aguda
-                        textToSpeech.setSpeechRate(1.1f);  // Ajusta la velocidad ligeramente
-
-                        // Reproduce el texto explicativo cuando TTS esté listo
+                        textToSpeech.setPitch(1.5f);
+                        textToSpeech.setSpeechRate(1.1f);
                         playExplanation();
                     }
                 } else {
@@ -78,16 +77,28 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
             }
         });
 
-        // Asigna los elementos de la interfaz de usuario
         hintImageView = findViewById(R.id.hint_image_view);
         guessLeftTextView = findViewById(R.id.guess_left_text_view);
         wrongLettersTextView = findViewById(R.id.wrong_letters_text_view);
-        typingInput = findViewById(R.id.typing_input);
+        typingInput = findViewById(R.id.input_letter);
+        confirmButton = findViewById(R.id.submit_button);
         resetButton = findViewById(R.id.reset_button);
 
-        // Inicializa los sonidos
         correctSound = MediaPlayer.create(this, R.raw.correct_sound);
         wrongSound = MediaPlayer.create(this, R.raw.wrong_sound);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = typingInput.getText().toString().trim().toLowerCase();
+                if (!input.isEmpty()) {
+                    initGame(input);
+                    typingInput.setText("");
+                } else {
+                    Toast.makeText(VocalGuessingGameActivity.this, "Por favor ingresa una vocal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,37 +107,12 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
             }
         });
 
-        setUpKeyboard();
         randomWord();
     }
 
-    // Método para reproducir la explicación con TTS
     private void playExplanation() {
         String explanationText = "Bienvenido al juego Adivina la Vocal en lengua de señas. Tu objetivo es adivinar la vocal correcta a partir de la imagen proporcionada. Tienes tres intentos para acertar. ¡Buena suerte!";
         textToSpeech.speak(explanationText, TextToSpeech.QUEUE_FLUSH, null, null);
-    }
-
-    private void setUpKeyboard() {
-        Button buttonA = findViewById(R.id.button_a);
-        Button buttonE = findViewById(R.id.button_e);
-        Button buttonI = findViewById(R.id.button_i);
-        Button buttonO = findViewById(R.id.button_o);
-        Button buttonU = findViewById(R.id.button_u);
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button button = (Button) v;
-                String letter = button.getText().toString().toLowerCase();
-                initGame(letter);
-            }
-        };
-
-        buttonA.setOnClickListener(listener);
-        buttonE.setOnClickListener(listener);
-        buttonI.setOnClickListener(listener);
-        buttonO.setOnClickListener(listener);
-        buttonU.setOnClickListener(listener);
     }
 
     private void randomWord() {
@@ -139,14 +125,25 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
         guessLeftTextView.setText("Intentos que te quedan: " + maxGuesses);
         wrongLettersTextView.setText("Vocales Incorrectas: " + String.join(", ", incorrectLetters));
     }
-
     private void initGame(String key) {
-        if (key.matches("[aeiou]") && !incorrectLetters.contains(" " + key) && !correctLetters.contains(key)) {
+        // Verifica si la letra ingresada es una vocal
+        if (!key.matches("[a e i o u]")) {
+            // Muestra el mensaje si no es una vocal
+            Toast.makeText(this, "Debes ingresar una vocal", Toast.LENGTH_SHORT).show();
+
+            // Borra el texto en el campo de texto para que el usuario pueda volver a intentarlo
+            typingInput.setText("");
+
+            return; // Sale del método si no es una vocal
+        }
+
+        // Continúa con el proceso de adivinanza si la letra es válida
+        if (!incorrectLetters.contains(" " + key) && !correctLetters.contains(key)) {
             if (word.equals(key)) {
                 correctLetters.add(key);
                 Toast.makeText(this, "Felicidades! Encontraste la vocal " + word.toUpperCase(), Toast.LENGTH_SHORT).show();
                 playCorrectSound(); // Reproduce el sonido correcto
-                randomWord();
+                randomWord(); // Genera una nueva palabra
             } else {
                 maxGuesses--;
                 incorrectLetters.add(" " + key);
@@ -156,6 +153,7 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
             }
         }
 
+        // Verifica si el jugador ha perdido
         if (maxGuesses < 1) {
             showLossDialog();
         }
@@ -163,19 +161,17 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
 
     private void playCorrectSound() {
         if (correctSound != null) {
-            correctSound.start(); // Reproduce el sonido de acierto
+            correctSound.start();
         }
     }
-
     private void playWrongSound() {
         if (wrongSound != null) {
-            wrongSound.start(); // Reproduce el sonido de error
+            wrongSound.start();
         }
     }
-
     private void showLossDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Perdiste!")
+                .setTitle("¡Perdiste!")
                 .setMessage("La vocal era: " + word.toUpperCase())
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -186,27 +182,25 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
     private void goToSubVocalsActivity() {
         Intent intent = new Intent(VocalGuessingGameActivity.this, SubVocalsActivity.class);
         startActivity(intent);
         finish();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (correctSound != null) {
-            correctSound.release(); // Libera los recursos del MediaPlayer
+            correctSound.release();
             correctSound = null;
         }
         if (wrongSound != null) {
-            wrongSound.release(); // Libera los recursos del MediaPlayer
+            wrongSound.release();
             wrongSound = null;
         }
         if (textToSpeech != null) {
             textToSpeech.stop();
-            textToSpeech.shutdown(); // Libera los recursos de TTS
+            textToSpeech.shutdown();
         }
     }
 
@@ -220,3 +214,4 @@ public class VocalGuessingGameActivity extends AppCompatActivity {
         }
     }
 }
+

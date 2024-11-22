@@ -4,45 +4,40 @@
     android:padding="16dp"
     android:background="@drawable/fondo_degradado">
 
+    <!-- Botón para regresar -->
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        android:text="Atrás"
+        android:background="@drawable/btn_back_background"
+        android:textColor="#FFFFFF" />
 
-    <!-- Añadir ScrollView para hacer el contenido desplazable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/btn_back"
         android:fillViewport="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/typing_input"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                android:inputType="text"
-                android:maxLength="1"
-                android:visibility="invisible"/>
-
-
-
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
             <TextView
                 android:id="@+id/title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Adivina la Vocal"
                 android:textStyle="bold"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textColor="#ffffff"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"/>
-
-
-
-
-            <!-- Ajustar el tamaño de la imagen -->
+                />
             <ImageView
                 android:id="@+id/hint_image_view"
                 android:layout_width="150dp"
@@ -52,93 +47,44 @@
                 android:layout_marginTop="20dp"
                 android:contentDescription="Hint Image"/>
 
+
             <TextView
                 android:id="@+id/guess_left_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Intentos que te quedan:  3"
-                android:textSize="18sp"
-                android:textColor="#ffffff"
-                android:layout_below="@id/hint_image_view"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="16dp"
+                android:text="Intentos que te quedan: 3" />
 
             <TextView
                 android:id="@+id/wrong_letters_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vocales Incorrectas: "
-                android:textSize="18sp"
-                android:textColor="#ffffff"
-                android:layout_below="@id/guess_left_text_view"
-                android:layout_marginTop="10dp"/>
+                android:text="Letras Incorrectas: "
+                android:layout_marginTop="8dp" />
 
-            <!-- Layout para el teclado en pantalla -->
-            <LinearLayout
-                android:id="@+id/keyboard_layout"
+            <EditText
+                android:id="@+id/input_letter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Escribe una vocal"
+                android:inputType="text"
+                android:maxLines="1"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/submit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@id/wrong_letters_text_view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button_a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A"/>
-
-                    <Button
-                        android:id="@+id/button_e"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="E"/>
-
-                    <Button
-                        android:id="@+id/button_i"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="I"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button_o"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="O"/>
-
-                    <Button
-                        android:id="@+id/button_u"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="U"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:text="Enviar"
+                android:layout_marginTop="8dp" />
 
             <Button
                 android:id="@+id/reset_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cambiar la Vocal"
-                android:layout_below="@id/keyboard_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"/>
+                android:text="Reiniciar Juego"
+                android:layout_marginTop="16dp" />
 
-        </RelativeLayout>
-
+        </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

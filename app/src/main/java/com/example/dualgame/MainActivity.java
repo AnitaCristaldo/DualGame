@@ -263,12 +263,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void navigateToLogin() {
-        Intent intent = new Intent(getApplicationContext(), Login.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Limpia la pila de actividades
-        startActivity(intent);
-        finish();
-    }
+//    private void navigateToLogin() {
+//        Intent intent = new Intent(getApplicationContext(), Login.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Limpia la pila de actividades
+//        startActivity(intent);
+//        finish();
+//    }
+private void navigateToLogin() {
+    FirebaseAuth.getInstance().signOut(); // Asegúrate de que se cierre la sesión
+
+    // Redirige a la pantalla de Login y asegura que se limpie la pila
+    Intent intent = new Intent(MainActivity.this, Login.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    startActivity(intent);
+    finish();
+}
+
+
 
     private void displayUserInfo() {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);

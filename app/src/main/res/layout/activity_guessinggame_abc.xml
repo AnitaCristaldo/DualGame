@@ -16,7 +16,6 @@
         android:background="@drawable/btn_back_background"
         android:textColor="#FFFFFF" />
 
-    <!-- Contenido principal en ScrollView -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,29 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:padding="16dp">
 
-            <!-- Título del juego -->
-            <TextView
-                android:id="@+id/title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adivina el número"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="#FFFFFF"
-                android:gravity="center" />
-
-            <!-- Imagen de pista -->
             <ImageView
                 android:id="@+id/hint_image_view"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
-                android:contentDescription="Imagen de pista" />
+                android:contentDescription="Hint Image" />
 
-            <!-- Intentos restantes -->
+
             <TextView
                 android:id="@+id/guess_left_text_view"
                 android:layout_width="wrap_content"
@@ -57,28 +44,22 @@
                 android:layout_marginTop="16dp"
                 android:text="Intentos que te quedan: 3" />
 
-            <!-- Letras incorrectas -->
             <TextView
-                android:id="@+id/wrong_numbers_text_view"
+                android:id="@+id/wrong_letters_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Números Incorrectos:"
+                android:text="Letras Incorrectas: "
                 android:layout_marginTop="8dp" />
 
-            <!-- Entrada de número -->
             <EditText
-                android:id="@+id/input_number"
+                android:id="@+id/input_letter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingresa un número"
-                android:inputType="number"
+                android:hint="Escribe una letra"
+                android:inputType="text"
                 android:maxLines="1"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:layout_marginTop="16dp" />
 
-            <!-- Botón de enviar -->
             <Button
                 android:id="@+id/submit_button"
                 android:layout_width="wrap_content"
@@ -86,13 +67,13 @@
                 android:text="Enviar"
                 android:layout_marginTop="8dp" />
 
-            <!-- Botón de reinicio -->
             <Button
                 android:id="@+id/reset_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reiniciar Juego"
                 android:layout_marginTop="16dp" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
