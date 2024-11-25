@@ -1,71 +1,3 @@
-/*package com.example.dualgame;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class VocalsActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vocals);
-
-        // Configurar el botón de retroceso
-        findViewById(R.id.card_view_backbutton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crear un Intent para ir a LevelsActivity
-                Intent intent = new Intent(VocalsActivity.this, LevelsActivity.class);
-                startActivity(intent);
-                // Finalizar la actividad actual
-                finish();
-            }
-        });
-
-        // Configurar el clic en las imágenes dentro de los CardViews
-        findViewById(R.id.card_view_vocal_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_a);
-            }
-        });
-
-        findViewById(R.id.card_view_vocal_e).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_e);
-            }
-        });
-
-        findViewById(R.id.card_view_vocal_i).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_i);
-            }
-        });
-
-        findViewById(R.id.card_view_vocal_o).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_o);
-            }
-        });
-
-        findViewById(R.id.card_view_vocal_u).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_u);
-            }
-        });
-    }
-
-    private void openFullScreenImage(int imageResId) {
-        Intent intent = new Intent(VocalsActivity.this, FullScreenImageActivity.class);
-        intent.putExtra("imageResId", imageResId);
-        startActivity(intent);
-    }
-}*/
 package com.example.dualgame.singviews;
 
 import android.content.Intent;
@@ -109,7 +41,7 @@ public class VocalsActivity extends AppCompatActivity {
         findViewById(R.id.card_view_letra_e_senas).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFullScreenImage(R.drawable.vocal_e);
+                openFullScreenImage(R.drawable.letra_e_senas);
             }
         });
 
@@ -155,11 +87,6 @@ public class VocalsActivity extends AppCompatActivity {
                         // Ir a LogrosActivity
                         startActivity(new Intent(VocalsActivity.this, LogrosActivity.class));
                         return true;
-
-
-
-
-
                     }
                     return false;
                 }
