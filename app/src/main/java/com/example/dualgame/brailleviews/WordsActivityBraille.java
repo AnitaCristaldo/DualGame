@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.LogrosActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.example.dualgame.singviews.LevelsActivity;
@@ -51,9 +52,8 @@ public class WordsActivityBraille extends AppCompatActivity {
 
                     } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
                         // Ir a LogrosActivity
-                        startActivity(new Intent(WordsActivityBraille.this, LogrosActivity.class));
+                        startActivity(new Intent(WordsActivityBraille.this, LogrosDetalleActivity.class));
                         return true;
-
                     }
                     return false;
                 }

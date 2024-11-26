@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.LogrosActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.FullScreenImageActivity;
 import com.example.dualgame.singviews.LanguageActivity;
@@ -138,7 +139,7 @@ public class NumbersActivityBraille extends AppCompatActivity {
 
                     } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
                         // Ir a LogrosActivity
-                        startActivity(new Intent(NumbersActivityBraille.this, LogrosActivity.class));
+                        startActivity(new Intent(NumbersActivityBraille.this, LogrosDetalleActivity.class));
                         return true;
 
 

@@ -114,7 +114,8 @@ public class ResultActivityBraille extends AppCompatActivity {
         });
     }
 
-    // Método para inicializar las categorías si no existen
+    // Método para iniciali
+    // zar las categorías si no existen
     private void inicializarCategorias(DocumentReference categoriaRef) {
         Map<String, Object> categorias = new HashMap<>();
         categorias.put("medallasBronce", 0);

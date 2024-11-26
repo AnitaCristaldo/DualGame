@@ -19,6 +19,7 @@ import com.example.dualgame.brailleviews.AbecedarioActivityBraille;
 import com.example.dualgame.brailleviews.ResultAbcBraille;
 import com.example.dualgame.brailleviews.ResultActivityBraille;
 import com.example.dualgame.brailleviews.SubNumbersActivityBraille;
+import com.example.dualgame.singviews.ResultActivityNumbersSenas;
 import com.example.dualgame.singviews.SubNumbersActivity;
 import com.example.dualgame.singviews.SubVocalsActivity;
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class QuizQuestionsNumbersSenas extends AppCompatActivity implements View
                 if (mCurrentPosition <= mQuestionList.size()) {
                     setQuestion();
                 } else {
-                    Intent intent = new Intent(QuizQuestionsNumbersSenas.this, ResultAbcBraille.class);
+                    Intent intent = new Intent(QuizQuestionsNumbersSenas.this, ResultActivityNumbersSenas.class);
                     intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers);
                     intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList.size());
                     startActivity(intent);

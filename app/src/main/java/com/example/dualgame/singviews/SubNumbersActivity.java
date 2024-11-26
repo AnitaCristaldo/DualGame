@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosDetalleActivitySenas;
 import com.example.dualgame.R;
 
 
@@ -66,6 +67,15 @@ public class SubNumbersActivity extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(SubNumbersActivity.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(SubNumbersActivity.this, LogrosDetalleActivitySenas.class));
+                        return true;
+
+
+
+
                     }
 
                     return false;

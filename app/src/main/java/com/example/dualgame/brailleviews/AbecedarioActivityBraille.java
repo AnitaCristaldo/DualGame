@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -56,6 +57,14 @@ public class AbecedarioActivityBraille extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(AbecedarioActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(AbecedarioActivityBraille.this, LogrosDetalleActivity.class));
+                        return true;
+
+
+
                     }
 
                     return false;

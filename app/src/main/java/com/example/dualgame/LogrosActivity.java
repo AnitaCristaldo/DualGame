@@ -9,10 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.brailleviews.GamesActivityBraille;
+import com.example.dualgame.singviews.GamesActivity;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class LogrosActivity extends AppCompatActivity {
+
+    // Variable para determinar el modo actual: true = Braille, false = Lengua de Señas
+    private boolean isBrailleMode = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +28,16 @@ public class LogrosActivity extends AppCompatActivity {
         Button btnSistemaBraille = findViewById(R.id.btnSistemaBraille);
 
         btnLenguaDeSenias.setOnClickListener(v -> {
-            // Ir a la pantalla de logros de Lengua de Señas
-            Intent intent = new Intent(LogrosActivity.this, LogrosDetalleActivity.class);
-
+            // Cambiar a modo Lengua de Señas y navegar a la pantalla correspondiente
+            isBrailleMode = false;
+            Intent intent = new Intent(LogrosActivity.this, LogrosDetalleActivitySenas.class);
             startActivity(intent);
         });
 
         btnSistemaBraille.setOnClickListener(v -> {
-            // Ir a la pantalla de logros de Sistema Braille
+            // Cambiar a modo Braille y navegar a la pantalla correspondiente
+            isBrailleMode = true;
             Intent intent = new Intent(LogrosActivity.this, LogrosDetalleActivity.class);
-
             startActivity(intent);
         });
 
@@ -48,7 +52,12 @@ public class LogrosActivity extends AppCompatActivity {
                         startActivity(new Intent(LogrosActivity.this, LanguageActivity.class));
                         return true;
                     } else if (itemId == R.id.navigation_games) {
-                        startActivity(new Intent(LogrosActivity.this, GamesActivityBraille.class));
+                        // Dirigir a la actividad correspondiente según el modo actual
+                        if (isBrailleMode) {
+                            startActivity(new Intent(LogrosActivity.this, GamesActivityBraille.class));
+                        } else {
+                            startActivity(new Intent(LogrosActivity.this, GamesActivity.class)); // Actividad para juegos de lengua de señas
+                        }
                         return true;
                     } else if (itemId == R.id.navigation_config) {
                         startActivity(new Intent(LogrosActivity.this, ConfiguracionActivity.class));

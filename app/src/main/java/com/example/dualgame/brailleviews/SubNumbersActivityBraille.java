@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.games.NumberGuessingActivityBraille;
 import com.example.dualgame.games.QuizQuestionsNumbersBraille;
@@ -60,6 +61,16 @@ public class SubNumbersActivityBraille extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(SubNumbersActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(SubNumbersActivityBraille.this, LogrosDetalleActivity.class));
+                        return true;
+
+
+
+
                     }
 
                     return false;

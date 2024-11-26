@@ -78,6 +78,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.LogrosActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.FullScreenImageActivity;
 import com.example.dualgame.singviews.LanguageActivity;
@@ -161,7 +162,7 @@ public class VocalsActivityBraille extends AppCompatActivity {
 
                     } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
                         // Ir a LogrosActivity
-                        startActivity(new Intent(VocalsActivityBraille.this, LogrosActivity.class));
+                        startActivity(new Intent(VocalsActivityBraille.this, LogrosDetalleActivity.class));
                         return true;
 
 

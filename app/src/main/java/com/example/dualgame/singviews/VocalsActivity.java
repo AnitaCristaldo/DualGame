@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.LogrosActivity;
+import com.example.dualgame.LogrosDetalleActivitySenas;
 import com.example.dualgame.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -85,7 +86,7 @@ public class VocalsActivity extends AppCompatActivity {
 
                     } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
                         // Ir a LogrosActivity
-                        startActivity(new Intent(VocalsActivity.this, LogrosActivity.class));
+                        startActivity(new Intent(VocalsActivity.this, LogrosDetalleActivitySenas.class));
                         return true;
                     }
                     return false;

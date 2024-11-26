@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosDetalleActivitySenas;
 import com.example.dualgame.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,6 +35,15 @@ public class GamesActivity extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(GamesActivity.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(GamesActivity.this, LogrosDetalleActivitySenas.class));
+                        return true;
+
+
+
+
                     }
                     return false;
                 }

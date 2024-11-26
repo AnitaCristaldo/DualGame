@@ -8,7 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dualgame.ConfiguracionActivity;
+import com.example.dualgame.LogrosDetalleActivity;
+import com.example.dualgame.LogrosDetalleActivitySenas;
 import com.example.dualgame.R;
+import com.example.dualgame.singviews.AbcActivity;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -59,6 +62,15 @@ public class SubVocalsActivityBraille extends AppCompatActivity {
                     else if (itemId == R.id.navigation_config) {  // Manejar la selección del nuevo ítem
                         startActivity(new Intent(SubVocalsActivityBraille.this, ConfiguracionActivity.class));  // Cambia por tu Activity de Ajustes
                         return true;
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(SubVocalsActivityBraille.this, LogrosDetalleActivity.class));
+                        return true;
+
+
+
+
                     }
                     return false;
                 }

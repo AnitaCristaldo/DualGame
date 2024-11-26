@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.dualgame.ConfiguracionActivity;
 import com.example.dualgame.LogrosActivity;
+import com.example.dualgame.LogrosDetalleActivity;
 import com.example.dualgame.R;
 import com.example.dualgame.singviews.LanguageActivity;
 import com.example.dualgame.singviews.LevelsActivity;
@@ -77,7 +78,7 @@ public class LevelsActivityBraille extends AppCompatActivity {
 
                     } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
                         // Ir a LogrosActivity
-                        startActivity(new Intent(LevelsActivityBraille.this, LogrosActivity.class));
+                        startActivity(new Intent(LevelsActivityBraille.this, LogrosDetalleActivity.class));
                         return true;
 
 

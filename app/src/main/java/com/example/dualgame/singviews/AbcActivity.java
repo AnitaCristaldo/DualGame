@@ -8,7 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.dualgame.LogrosDetalleActivity;
+import com.example.dualgame.LogrosDetalleActivitySenas;
 import com.example.dualgame.R;
+import com.example.dualgame.brailleviews.AbcActivityBraille;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.bumptech.glide.Glide; //para que funcione el gif
@@ -133,6 +136,15 @@ public class AbcActivity extends AppCompatActivity {
                     } else if (itemId == R.id.navigation_games) {
                         startActivity(new Intent(AbcActivity.this, GamesActivity.class));
                         return true;
+
+
+                    } else if (itemId == R.id.navigation_logros) {  // Agregar el manejo para Logros
+                        // Ir a LogrosActivity
+                        startActivity(new Intent(AbcActivity.this, LogrosDetalleActivitySenas.class));
+                        return true;
+
+
+
                     }
                     return false;
                 }
