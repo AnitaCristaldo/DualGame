@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_degradado"
+    android:padding="16dp">
+
+    <!-- Título de la pantalla -->
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logros por Categoría"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Sección para Vocales -->
+    <TextView
+        android:id="@+id/tvCategoryVocalesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categoría: Vocales"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_bronce"
+                android:contentDescription="Medalla Bronce" />
+
+            <TextView
+                android:id="@+id/tvMedallasVocalesBronceSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_plata"
+                android:contentDescription="Medalla Plata" />
+
+            <TextView
+                android:id="@+id/tvMedallasVocalesPlataSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_oro"
+                android:contentDescription="Medalla Oro" />
+
+            <TextView
+                android:id="@+id/tvMedallasVocalesOroSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Sección para Abecedario -->
+    <TextView
+        android:id="@+id/tvCategoryAbecedarioTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categoría: Abecedario"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_bronce"
+                android:contentDescription="Medalla Bronce" />
+
+            <TextView
+                android:id="@+id/tvMedallasAbecedarioBronceSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_plata"
+                android:contentDescription="Medalla Plata" />
+
+            <TextView
+                android:id="@+id/tvMedallasAbecedarioPlataSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_oro"
+                android:contentDescription="Medalla Oro" />
+
+            <TextView
+                android:id="@+id/tvMedallasAbecedarioOroSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Sección para Números -->
+    <TextView
+        android:id="@+id/tvCategoryNumerosTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categoría: Números"
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_bronce"
+                android:contentDescription="Medalla Bronce" />
+
+            <TextView
+                android:id="@+id/tvMedallasNumerosBronceSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_plata"
+                android:contentDescription="Medalla Plata" />
+
+            <TextView
+                android:id="@+id/tvMedallasNumerosPlataSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/medalla_oro"
+                android:contentDescription="Medalla Oro" />
+
+            <TextView
+                android:id="@+id/tvMedallasNumerosOroSenas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Botón para regresar -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        android:layout_marginTop="20dp" />
+</LinearLayout>
