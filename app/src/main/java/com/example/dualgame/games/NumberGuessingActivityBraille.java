@@ -62,7 +62,7 @@ public class NumberGuessingActivityBraille extends AppCompatActivity {
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
-                if (langResult != TextToSpeech.LANG_AVAILABLE) {
+                if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Toast.makeText(this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
                 } else {
                     textToSpeech.setPitch(1.5f);
