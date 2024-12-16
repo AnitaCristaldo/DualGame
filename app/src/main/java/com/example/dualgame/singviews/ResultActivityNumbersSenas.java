@@ -63,29 +63,53 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
         // Establece el texto del TextView para mostrar el puntaje obtenido, mostrando la cantidad de respuestas correctas de un total de preguntas.
 
 
+
+        //REGLA DE TRES
+
+  /*Cálculo de medallas con regla de tres:
+Se calcula el porcentaje de respuestas correctas y se asigna una medalla según el rango de ese porcentaje.
+Si el porcentaje es 0%, no se otorgan medallas, pero se muestra un mensaje motivacional.
+Evitar medallas en caso de 0 respuestas correctas:
+Si percentage == 0, se asigna un mensaje indicando que no se obtuvieron respuestas correctas y se muestra un ícono de "sin medalla".*/
+
+
+
+
+
+        int percentage = (int) ((double) correctAnswers / totalQuestions * 100); // Calcular porcentaje
         // Determine the message based on the score
         String message;
         int trophyImage; // Variable para determinar qué imagen mostrar
         final String medalla; // Cambiado a final
 
-        if (correctAnswers <= 2) { // 0 a 2 respuestas correctas
-            message = "Debes esforzarte más, ¡tú puedes!";
-            trophyImage = R.drawable.medalla_bronce; // Cambia según tu archivo
-            medalla = "Bronce";  // Medalla bronce
-        } else if (correctAnswers <= 4) { // 3 o 4 respuestas correctas
-            message = "¡Bien hecho! Estás mejorando.";
-            trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo
-            medalla = "Plata";  // Medalla plata
-        } else if (correctAnswers <= 6) { // 5 o 6 respuestas correctas
-            message = "¡Muy buen trabajo! Estás cerca de la perfección.";
-            trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo (puede ser plata o algo especial)
-            medalla = "Plata";  // Medalla plata
-        } else { // 7 u 8 respuestas correctas
-            message = "¡Felicidades! Excelente trabajo, eres un experto.";
-            trophyImage = R.drawable.medalla_oro; // Cambia según tu archivo
-            medalla = "Oro";  // Medalla oro
-        }
+        if (percentage == 0) {
+            // Generar un número aleatorio entre 1 y 9 para seleccionar un sticker
+            int randomSticker = (int) (Math.random() * 9) + 1;
 
+            // Usar el sticker aleatorio
+            String stickerName = "sticker" + randomSticker;  // Nombre del archivo del sticker
+            trophyImage = getResources().getIdentifier(stickerName, "drawable", getPackageName()); // Obtener el identificador de recurso
+
+            message = "No obtuviste respuestas correctas.\n¡Sigue practicando!";
+            medalla = null;  // Sin medalla
+
+        } else if (percentage <= 33) { // 0% - 33%
+            message = "Debes esforzarte más, ¡tú puedes!";
+            trophyImage = R.drawable.medalla_bronce; // Imagen de medalla de bronce
+            medalla = "Bronce";
+        } else if (percentage <= 66) { // 34% - 66%
+            message = "¡Bien hecho! Estás mejorando.";
+            trophyImage = R.drawable.medalla_plata; // Imagen de medalla de plata
+            medalla = "Plata";
+        } else if (percentage < 100) { // 67% - 99%
+            message = "¡Muy buen trabajo! Estás cerca de la perfección.";
+            trophyImage = R.drawable.medalla_oro; // Imagen de medalla de oro
+            medalla = "Oro";
+        } else { // 100%
+            message = "¡Felicidades! Excelente trabajo, eres un experto.";
+            trophyImage = R.drawable.medalla_oro; // Imagen de medalla de oro especial
+            medalla = "Oro";
+        }
 
 
         // Configurar el mensaje dinámico y la imagen
@@ -122,7 +146,7 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
                     if (!task.getResult().exists()) {
                         Log.d(TAG, "La categoría 'numeros' no existe, inicializando...");
                         // Si la categoría no existe, inicializamos las categorías
-                        inicializarCategorias(categoriaRef);
+                        inicializarCategorias(categoriaRef, medalla);
                     } else {
                         Log.d(TAG, "La categoría 'numeros' ya existe, actualizando medallas...");
                         // Si la categoría ya existe, actualizamos la medalla
@@ -145,7 +169,7 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
     }
 
     // Método para inicializar las categorías si no existen
-    private void inicializarCategorias(DocumentReference categoriaRef) {
+    private void inicializarCategorias(DocumentReference categoriaRef, String medalla) {
         Map<String, Object> categorias = new HashMap<>();
         categorias.put("medallasBronce", 0);
         categorias.put("medallasPlata", 0);
@@ -156,7 +180,7 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     // Una vez inicializadas las categorías, actualizar la medalla
                     Log.d(TAG, "Categorías inicializadas correctamente.");
-                    actualizarMedallas(categoriaRef, "Bronce");  // Se puede cambiar según el puntaje
+                    actualizarMedallas(categoriaRef, medalla);  // Se puede cambiar según el puntaje
                 })
                 .addOnFailureListener(e -> {
                     // Manejo de error si la inicialización falla
@@ -166,6 +190,11 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
 
     // Método para actualizar las medallas
     private void actualizarMedallas(DocumentReference categoriaRef, String medalla) {
+
+        if (medalla == null) {
+            Log.e(TAG, "Error: medalla es null");
+            return; // Si medalla es null, no hacemos nada
+        }
         switch (medalla) {
             case "Bronce":
                 categoriaRef.update("medallasBronce", FieldValue.increment(1));
@@ -178,6 +207,9 @@ public class ResultActivityNumbersSenas extends AppCompatActivity {
             case "Oro":
                 categoriaRef.update("medallasOro", FieldValue.increment(1));
                 Log.d(TAG, "Medalla Oro incrementada.");
+                break;
+            default:
+                Log.e(TAG, "Medalla desconocida: " + medalla);
                 break;
         }
     }

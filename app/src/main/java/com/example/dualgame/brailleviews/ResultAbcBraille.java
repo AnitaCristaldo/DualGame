@@ -42,29 +42,56 @@ public class ResultAbcBraille extends AppCompatActivity {
             // Configurar el texto del puntaje
             tvScoreBraille.setText("Tu puntaje es " + correctAnswers + " de " + totalQuestions);
 
+
+            //REGLA DE TRES
+
+  /*Cálculo de medallas con regla de tres:
+Se calcula el porcentaje de respuestas correctas y se asigna una medalla según el rango de ese porcentaje.
+Si el porcentaje es 0%, no se otorgan medallas, pero se muestra un mensaje motivacional.
+Evitar medallas en caso de 0 respuestas correctas:
+Si percentage == 0, se asigna un mensaje indicando que no se obtuvieron respuestas correctas y se muestra un ícono de "sin medalla".*/
+
+
+
+
+
             // Determinar el mensaje basado en el puntaje
+
+            int percentage = (int) ((double) correctAnswers / totalQuestions * 100);
             String message;
             int trophyImage; // Variable para determinar qué imagen mostrar
             final String medalla; // Cambiado a final
 
 
-            if (correctAnswers <= 2) { // 0 a 2 respuestas correctas
-                message = "Debes esforzarte más, ¡tú puedes!";
-                trophyImage = R.drawable.medalla_bronce; // Cambia según tu archivo
-                medalla = "Bronce";  // Medalla bronce
-            } else if (correctAnswers <= 4) { // 3 o 4 respuestas correctas
-                message = "¡Bien hecho! Estás mejorando.";
-                trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo
-                medalla = "Plata";  // Medalla plata
-            } else if (correctAnswers <= 6) { // 5 o 6 respuestas correctas
-                message = "¡Muy buen trabajo! Estás cerca de la perfección.";
-                trophyImage = R.drawable.medalla_plata; // Cambia según tu archivo (puede ser plata o algo especial)
-                medalla = "Plata";  // Medalla plata
-            } else { // 7 u 8 respuestas correctas
-                message = "¡Felicidades! Excelente trabajo, eres un experto.";
-                trophyImage = R.drawable.medalla_oro; // Cambia según tu archivo
-                medalla = "Oro";  // Medalla oro
+            if (percentage == 0) {
+                // Generar un número aleatorio entre 1 y 9 para seleccionar un sticker
+                int randomSticker = (int) (Math.random() * 9) + 1;
+
+                // Usar el sticker aleatorio
+                String stickerName = "sticker" + randomSticker;  // Nombre del archivo del sticker
+                trophyImage = getResources().getIdentifier(stickerName, "drawable", getPackageName()); // Obtener el identificador de recurso
+
+                message = "No obtuviste respuestas correctas.\n¡Sigue practicando!";
+                medalla = null;  // Sin medalla
+
+            } else if (percentage <= 33) {
+                message = "Debes esforzarte más\n          ¡Tú puedes!";
+                trophyImage = R.drawable.medalla_bronce; // Medalla bronce
+                medalla = "Bronce";
+            } else if (percentage <= 66) {
+                message = "     \t¡Bien hecho!\n Estás mejorando";
+                trophyImage = R.drawable.medalla_plata; // Medalla plata
+                medalla = "Plata";
+            } else if (percentage < 100) {
+                message = "        ¡Felicidades!\n    Excelente trabajo";
+                trophyImage = R.drawable.medalla_oro; // Medalla oro
+                medalla = "Oro";
+            } else { // 100% correcto
+                message = "        ¡Perfecto!\n    ¡Eres un maestro!";
+                trophyImage = R.drawable.medalla_oro; // Medalla oro
+                medalla = "Oro";
             }
+
 
             // Configurar el mensaje dinámico y la imagen
             tvCongratulations.setText(message);
@@ -97,7 +124,7 @@ public class ResultAbcBraille extends AppCompatActivity {
                         if (!task.getResult().exists()) {
                             Log.d(TAG, "La categoría 'abecedario' no existe, inicializando...");
                             // Si la categoría no existe, inicializamos las categorías
-                            inicializarCategorias(categoriaRef);
+                            inicializarCategorias(categoriaRef, medalla);
                         } else {
                             Log.d(TAG, "La categoría 'abecedario' ya existe, actualizando medallas...");
                             // Si la categoría ya existe, actualizamos la medalla
@@ -120,7 +147,7 @@ public class ResultAbcBraille extends AppCompatActivity {
         }
 
     // Método para inicializar las categorías si no existen
-    private void inicializarCategorias(DocumentReference categoriaRef) {
+    private void inicializarCategorias(DocumentReference categoriaRef, String medalla) {
         Map<String, Object> categorias = new HashMap<>();
         categorias.put("medallasBronce", 0);
         categorias.put("medallasPlata", 0);
@@ -131,7 +158,7 @@ public class ResultAbcBraille extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     // Una vez inicializadas las categorías, actualizar la medalla
                     Log.d(TAG, "Categorías inicializadas correctamente.");
-                    actualizarMedallas(categoriaRef, "Bronce");  // Se puede cambiar según el puntaje
+                    actualizarMedallas(categoriaRef, medalla);  // Se puede cambiar según el puntaje
                 })
                 .addOnFailureListener(e -> {
                     // Manejo de error si la inicialización falla
@@ -141,6 +168,12 @@ public class ResultAbcBraille extends AppCompatActivity {
 
     // Método para actualizar las medallas
     private void actualizarMedallas(DocumentReference categoriaRef, String medalla) {
+
+        if (medalla == null) {
+            // Si no se asigna medalla, asignar un valor predeterminado
+            medalla = "Ninguna";
+            Log.d(TAG, "La medalla es null, se asigna 'Ninguna'.");
+        }
         switch (medalla) {
             case "Bronce":
                 categoriaRef.update("medallasBronce", FieldValue.increment(1));
@@ -153,6 +186,10 @@ public class ResultAbcBraille extends AppCompatActivity {
             case "Oro":
                 categoriaRef.update("medallasOro", FieldValue.increment(1));
                 Log.d(TAG, "Medalla Oro incrementada.");
+                break;
+
+            default:
+                Log.e(TAG, "Medalla desconocida: " + medalla);
                 break;
         }
     }

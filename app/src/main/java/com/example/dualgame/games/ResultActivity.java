@@ -58,6 +58,11 @@ public class ResultActivity extends AppCompatActivity {
         // Establece el texto del TextView para mostrar el puntaje obtenido, mostrando la cantidad de respuestas correctas de un total de preguntas.
 
 
+
+
+
+/*   CODIGO VIEJO DE ASIGNACION DE MEDALLAS
+
         // Determine the message based on the score
         String message;
         int trophyImage; // Variable para determinar qué imagen mostrar
@@ -77,10 +82,75 @@ public class ResultActivity extends AppCompatActivity {
             medalla = "Oro";  // Medalla oro
         }
 
-
         // Set the dynamic message
         tvCongratulations.setText(message);
         icTrophy.setImageResource(trophyImage);
+
+
+*/
+
+
+  //REGLA DE TRES
+
+  /*Cálculo de medallas con regla de tres:
+Se calcula el porcentaje de respuestas correctas y se asigna una medalla según el rango de ese porcentaje.
+Si el porcentaje es 0%, no se otorgan medallas, pero se muestra un mensaje motivacional.
+Evitar medallas en caso de 0 respuestas correctas:
+Si percentage == 0, se asigna un mensaje indicando que no se obtuvieron respuestas correctas y se muestra un ícono de "sin medalla".*/
+
+
+//CODIGO NUEVO DE ASIGNACION DE MEDALLAS
+// Determina el porcentaje de respuestas correctas
+        int percentage = (int) ((double) correctAnswers / totalQuestions * 100);
+
+        String message;
+        int trophyImage; // Variable para determinar qué imagen mostrar
+        final String medalla; // Cambiado a final
+
+       /* if (percentage == 0) {
+            message = "No obtuviste respuestas correctas.\n¡Sigue practicando!";
+            trophyImage = R.drawable.cero_medalla; // Una imagen de "sin medalla"
+            medalla = null;  // Sin medalla
+
+            */
+
+        if (percentage == 0) {
+            // Generar un número aleatorio entre 1 y 9 para seleccionar un sticker
+            int randomSticker = (int) (Math.random() * 9) + 1;
+
+            // Usar el sticker aleatorio
+            String stickerName = "sticker" + randomSticker;  // Nombre del archivo del sticker
+            trophyImage = getResources().getIdentifier(stickerName, "drawable", getPackageName()); // Obtener el identificador de recurso
+
+            message = "No obtuviste respuestas correctas.\n¡Sigue practicando!";
+            medalla = null;  // Sin medalla
+
+        } else if (percentage <= 33) {
+            message = "Debes esforzarte más\n          ¡Tú puedes!";
+            trophyImage = R.drawable.medalla_bronce; // Medalla bronce
+            medalla = "Bronce";
+        } else if (percentage <= 66) {
+            message = "     \t¡Bien hecho!\n Estás mejorando";
+            trophyImage = R.drawable.medalla_plata; // Medalla plata
+            medalla = "Plata";
+        } else if (percentage < 100) {
+            message = "        ¡Felicidades!\n    Excelente trabajo";
+            trophyImage = R.drawable.medalla_oro; // Medalla oro
+            medalla = "Oro";
+        } else { // 100% correcto
+            message = "        ¡Perfecto!\n    ¡Eres un maestro!";
+            trophyImage = R.drawable.medalla_oro; // Medalla oro
+            medalla = "Oro";
+        }
+
+// Establecer mensaje e imagen dinámica
+        tvCongratulations.setText(message);
+        icTrophy.setImageResource(trophyImage);
+
+
+
+
+
         // Obtener el usuario autenticado
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -107,7 +177,7 @@ public class ResultActivity extends AppCompatActivity {
                     if (!task.getResult().exists()) {
                         Log.d(TAG, "La categoría 'vocales' no existe, inicializando...");
                         // Si la categoría no existe, inicializamos las categorías
-                        inicializarCategorias(categoriaRef);
+                        inicializarCategorias(categoriaRef, medalla);
                     } else {
                         Log.d(TAG, "La categoría 'vocales' ya existe, actualizando medallas...");
                         // Si la categoría ya existe, actualizamos la medalla
@@ -129,6 +199,9 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
+
+
+    /*
     // Método para inicializar las categorías si no existen
     private void inicializarCategorias(DocumentReference categoriaRef) {
         Map<String, Object> categorias = new HashMap<>();
@@ -148,9 +221,36 @@ public class ResultActivity extends AppCompatActivity {
                     Log.e(TAG, "Error al inicializar las categorías", e);
                 });
     }
+*/
+
+    // Método para inicializar las categorías si no existen
+    private void inicializarCategorias(DocumentReference categoriaRef, String medalla) {
+        Map<String, Object> categorias = new HashMap<>();
+        categorias.put("medallasBronce", 0);
+        categorias.put("medallasPlata", 0);
+        categorias.put("medallasOro", 0);
+
+        // Guardar las categorías en Firestore
+        categoriaRef.set(categorias)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Categorías inicializadas correctamente.");
+                    actualizarMedallas(categoriaRef, medalla);  // Asignamos la medalla correspondiente según el puntaje
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Error al inicializar las categorías", e);
+                });
+    }
+
+
 
     // Método para actualizar las medallas
     private void actualizarMedallas(DocumentReference categoriaRef, String medalla) {
+        if (medalla == null) {
+            // Si no se asigna medalla, asignar un valor predeterminado
+            medalla = "Ninguna";
+            Log.d(TAG, "La medalla es null, se asigna 'Ninguna'.");
+        }
+
         switch (medalla) {
             case "Bronce":
                 categoriaRef.update("medallasBronce", FieldValue.increment(1));
@@ -164,6 +264,13 @@ public class ResultActivity extends AppCompatActivity {
                 categoriaRef.update("medallasOro", FieldValue.increment(1));
                 Log.d(TAG, "Medalla Oro incrementada.");
                 break;
+            case "Ninguna":
+                Log.d(TAG, "No se obtuvo medalla, no se actualiza nada.");
+                break;
+            default:
+                Log.e(TAG, "Medalla desconocida: " + medalla);
+                break;
         }
     }
+
 }
