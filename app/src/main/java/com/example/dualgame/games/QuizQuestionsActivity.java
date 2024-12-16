@@ -3,12 +3,15 @@ package com.example.dualgame.games;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -17,6 +20,7 @@ import com.example.dualgame.R;
 import com.example.dualgame.singviews.SubVocalsActivity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class QuizQuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     private int mCurrentPosition = 1; // Posición actual en el cuestionario.
@@ -24,7 +28,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     private int mSelectedOptionPosition = 0; // Posición de la opción seleccionada por el usuario.
     private int mCorrectAnswers = 0; // Conteo de respuestas correctas.
 
-    // Definir variables para las vistas (UI)
+    // Variables para las vistas (UI)
     private TextView tv_question;
     private ImageView iv_image;
     private TextView tv_option_one, tv_option_two, tv_option_three, tv_option_four;
@@ -32,12 +36,17 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     private ProgressBar progressBar;
     private TextView tv_progress;
 
+    // Para sonidos y TextToSpeech
+    private MediaPlayer correctSound;
+    private MediaPlayer wrongSound;
+    private TextToSpeech textToSpeech;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_questions);
 
-        // Inicializar las vistas asociándolas con los elementos en el layout XML.
+        // Inicializar vistas
         tv_question = findViewById(R.id.tv_question);
         iv_image = findViewById(R.id.iv_image);
         tv_option_one = findViewById(R.id.tv_option_one);
@@ -49,23 +58,47 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
         progressBar = findViewById(R.id.progressBar);
         tv_progress = findViewById(R.id.tv_progress);
 
-        // Obtener la lista de preguntas desde una clase de constantes.
+        // Obtener lista de preguntas
         mQuestionList = Constants.getQuestions();
-        setQuestion(); // Mostrar la primera pregunta.
+        setQuestion();
 
-        // Establecer listeners para manejar los clics en las opciones y botones.
+        // Establecer listeners
         tv_option_one.setOnClickListener(this);
         tv_option_two.setOnClickListener(this);
         tv_option_three.setOnClickListener(this);
         tv_option_four.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
 
-        // Listener específico para el botón de retroceso.
         btn_back.setOnClickListener(v -> {
             Intent intent = new Intent(QuizQuestionsActivity.this, SubVocalsActivity.class);
             startActivity(intent);
-            finish(); // Finaliza la actividad actual para no regresar a ella.
+            finish();
         });
+
+        // Inicializar TextToSpeech
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
+                if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(QuizQuestionsActivity.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
+                } else {
+                    textToSpeech.setPitch(1.5f);
+                    textToSpeech.setSpeechRate(1.1f);
+                    playExplanation();
+                }
+            } else {
+                Toast.makeText(QuizQuestionsActivity.this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Inicializar sonidos
+        correctSound = MediaPlayer.create(this, R.raw.correct_sound);
+        wrongSound = MediaPlayer.create(this, R.raw.wrong_sound);
+    }
+
+    private void playExplanation() {
+        String explanationText = "Bienvenido al juego Cuestionario de vocales en lengua de señas. Tu objetivo es seleccionar la respuesta correcta a partir de la imagen proporcionada. Tienes 5 preguntas. ¡Buena suerte!";
+        textToSpeech.speak(explanationText, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
     @Override
@@ -93,15 +126,14 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
                     finish();
                 }
             } else {
-                // Desactivar las opciones después de "Entregar".
                 disableOptions();
-
-                // Verificar si la respuesta seleccionada es correcta.
                 Question question = mQuestionList.get(mCurrentPosition - 1);
                 if (question.getCorrectAnswer() != mSelectedOptionPosition) {
                     answerView(mSelectedOptionPosition, R.drawable.selected_option_inco);
+                    wrongSound.start(); // Sonido de respuesta incorrecta
                 } else {
                     mCorrectAnswers++;
+                    correctSound.start(); // Sonido de respuesta correcta
                 }
                 answerView(question.getCorrectAnswer(), R.drawable.selected_option_correct);
 
@@ -114,6 +146,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
             }
         }
     }
+
 
     // Método para desactivar el OnClickListener de las opciones
     private void disableOptions() {
@@ -194,5 +227,20 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
         tv.setTextColor(Color.parseColor("#363A43"));
         tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
         tv.setBackground(ContextCompat.getDrawable(this, R.drawable.selected_option_border_bg));
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        if (correctSound != null) {
+            correctSound.release();
+            correctSound = null;
+        }
+        if (wrongSound != null) {
+            wrongSound.release();
+            wrongSound = null;
+        }
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
     }
 }

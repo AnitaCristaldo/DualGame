@@ -4,12 +4,16 @@ package com.example.dualgame.games;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -23,6 +27,7 @@ import com.example.dualgame.singviews.ResultActivityNumbersSenas;
 import com.example.dualgame.singviews.SubNumbersActivity;
 import com.example.dualgame.singviews.SubVocalsActivity;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class QuizQuestionsNumbersSenas extends AppCompatActivity implements View.OnClickListener{
     private int mCurrentPosition = 1; // Posición actual en el cuestionario.
@@ -37,6 +42,12 @@ public class QuizQuestionsNumbersSenas extends AppCompatActivity implements View
     private Button btn_submit, btn_back;
     private ProgressBar progressBar;
     private TextView tv_progress;
+
+    // Para sonidos y TextToSpeech
+    private MediaPlayer correctSound;
+    private MediaPlayer wrongSound;
+    private TextToSpeech textToSpeech;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +86,34 @@ public class QuizQuestionsNumbersSenas extends AppCompatActivity implements View
             startActivity(intent);
             finish(); // Finaliza la actividad actual para no regresar a ella.
         });
+
+
+        // Inicializar TextToSpeech
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
+                if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(QuizQuestionsNumbersSenas.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
+                } else {
+                    textToSpeech.setPitch(1.5f);
+                    textToSpeech.setSpeechRate(1.1f);
+                    playExplanation();
+                }
+            } else {
+                Toast.makeText(QuizQuestionsNumbersSenas.this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Inicializar sonidos
+        correctSound = MediaPlayer.create(this, R.raw.correct_sound);
+        wrongSound = MediaPlayer.create(this, R.raw.wrong_sound);
+
+    }
+
+
+    private void playExplanation() {
+        String explanationText = "Bienvenido al juego Cuestionario de números en lengua de señas. Tu objetivo es seleccionar la respuesta correcta a partir de la imagen proporcionada. Tienes 8 preguntas. ¡Buena suerte!";
+        textToSpeech.speak(explanationText, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
     @Override
@@ -216,5 +255,22 @@ public class QuizQuestionsNumbersSenas extends AppCompatActivity implements View
         tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
         tv.setBackground(ContextCompat.getDrawable(this, R.drawable.selected_option_border_bg));
     }
+
+    protected void onDestroy() {
+        super.onDestroy();
+        if (correctSound != null) {
+            correctSound.release();
+            correctSound = null;
+        }
+        if (wrongSound != null) {
+            wrongSound.release();
+            wrongSound = null;
+        }
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+    }
+
 }
 

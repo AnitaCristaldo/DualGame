@@ -63,22 +63,21 @@ public class NumberGuessingActivitySenas extends AppCompatActivity {
         Button backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(v -> finish());
 
-        // Inicializa TextToSpeech
+        // Inicializar TextToSpeech
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 int langResult = textToSpeech.setLanguage(new Locale("es", "MX"));
-                if (langResult != TextToSpeech.LANG_AVAILABLE) {
-                    Toast.makeText(this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
+                if (langResult == TextToSpeech.LANG_MISSING_DATA || langResult == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(NumberGuessingActivitySenas.this, "Idioma no soportado para TTS", Toast.LENGTH_SHORT).show();
                 } else {
                     textToSpeech.setPitch(1.5f);
                     textToSpeech.setSpeechRate(1.1f);
                     playExplanation();
                 }
             } else {
-                Toast.makeText(this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NumberGuessingActivitySenas.this, "Error en inicialización de TTS", Toast.LENGTH_SHORT).show();
             }
         });
-
 
         // Asignar elementos UI
         hintImageView = findViewById(R.id.hint_image_view);
